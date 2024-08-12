@@ -1,6 +1,6 @@
 # Xin chào, bạn đang ở Bảo Tàng Code Lỗi 
 
-Nơi đây có gần như tất cả **Solution** cho các bài tập trên web [Code PTIT](code.ptit.edu.vn) của môn **Cấu trúc dữ liệu và Giải thuật** cho anh chị em PTIT thân yêu <3
+Nơi đây lưu giữ kỉ niệm của mình với [Code PTIT](code.ptit.edu.vn) khi học môn **Cấu trúc dữ liệu và Giải thuật** <3
 
 Author: [_LonggVuz.](https://web.facebook.com/longgvuz/) - B23DCAT175 - Just a Noob C++
 
