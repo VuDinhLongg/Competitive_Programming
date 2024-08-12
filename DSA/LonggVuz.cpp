@@ -21,6 +21,10 @@ void End(){
 #define int intmax_t
 #define db double
 
+const int mod = 1e9 + 7;
+const int oo = 1e18 + 7;
+const int maxn = 1e6 + 7;
+
 
 
 signed main(){
