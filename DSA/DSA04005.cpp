@@ -25,12 +25,10 @@ const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
 const int maxn = 1e6 + 7;
 
-int a[100], l[100];
+int l[100];
 void hehe(){
-	a[1] = 1; a[2] = 0;
 	l[1] = 1; l[2] = 1;
 	for(int i=3; i<=93; i++){
-		a[i] = a[i-2] + a[i-1];
 		l[i] = l[i-2] + l[i-1];
 	}
 }
