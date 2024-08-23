@@ -2,7 +2,7 @@
 
 Nơi đây lưu giữ kỉ niệm của mình với [Code PTIT](code.ptit.edu.vn) khi học môn **Cấu trúc dữ liệu và Giải thuật** 🧑‍💻
 
-Author: [_LonggVuz.](https://web.facebook.com/longgvuz/) - B23DCAT175 - Just a Noob C++
+Author: [_LonggVuz.](https://facebook.com/longgvuz/) - B23DCAT175 - Just a Noob C++
 
 -> [My LCOJ account](https://luyencode.net/user/vudinhlong) <-
 
