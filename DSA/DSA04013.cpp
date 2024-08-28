@@ -25,20 +25,17 @@ const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
 const int maxn = 1e5 + 7;
 
-int mark[maxn];
 void solve(int a[], int n){
-	for(int i=1; i<=n; i++) mark[i] = 0;
 	sort(a+1, a+n+1);
 	int cnt = 1, j = n / 2 + 1;
-	for(int i=1; i<n/2+1; i++){
+	for(int i=1; i<=n/2; i++){
 		if(a[i] * 2 <= a[j]){
-			mark[i] = mark[j] = cnt; ++cnt;
+			++cnt;
 			++j; if(j > n) break;
 		}else{
 			--i; ++j; if(j > n) break;
 		}
 	}cout << n - cnt + 1 << el;
-	//for(int i=1; i<=n; i++) cout << mark[i] << ' '; cout << el;
 }
 
 signed main(){
