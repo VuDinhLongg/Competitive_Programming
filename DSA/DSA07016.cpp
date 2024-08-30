@@ -27,7 +27,7 @@ const int maxn = 1e6 + 7;
 
 void solve(str a, int n){
 	stack<int> st;
-	int x = 1; a.pb(a.back() + 1);
+	int x = 1;
 	for(int i=0; i<n; i++){
 		if(a[i] == 'I'){
 			cout << x; ++x;
