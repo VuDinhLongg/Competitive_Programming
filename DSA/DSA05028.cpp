@@ -27,7 +27,6 @@ const int maxn = 1e6 + 7;
 
 int f[105][105];
 void solve(str a, int n, str b, int m){
-	ms(f, 0);
 	for(int i=1; i<=m; i++) f[0][i] = i;
 	for(int i=1; i<=n; i++) f[i][0] = i;
 	a = "@" + a; b = "@" + b;
