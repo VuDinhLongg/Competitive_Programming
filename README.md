@@ -1,4 +1,4 @@
-# Xin chào, bạn đang ở Bảo Tàng Code Lỗi 
+# Chào mừng các bạn đến với Bảo Tàng Code Lỗi !!!
 
 Nơi đây lưu giữ kỉ niệm của mình với [Code PTIT](code.ptit.edu.vn) khi học môn **Cấu trúc dữ liệu và Giải thuật** 🧑‍💻
 
