@@ -37,8 +37,8 @@ void LonggVuz(){
 		for(int j=0; j<m; j++){
 			f[i + j] += a[i] * b[j];
 		}
-	}int x = n + m - 1;
-	for(int i=0; i<x; i++){
+	}int x = (n - 1) + (m - 1);
+	for(int i=0; i<=x; i++){
 		cout << f[i] << ' ';
 	}cout << el;
 }
