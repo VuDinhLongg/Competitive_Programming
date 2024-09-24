@@ -54,11 +54,8 @@ void LonggVuz(){
 	}
 	for(int i=1; i<=120; i++){
 		ql(i, 1, 0, '+');
-		if(ok) break;
-	}
-	if(ok){
-		cout << "YES\n";
-	}else cout << "NO\n";
+		if(ok) return cout << "YES\n", void();
+	}cout << "NO\n";
 }
 
 signed main(){
