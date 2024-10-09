@@ -33,7 +33,7 @@ bool dfs(int u, int par, vector<int> &ve){
 	vis[u] = 1;
 	for(int &v : a[u]){
 		if(!vis[v]){
-	    ve.pb(v);
+	        	ve.pb(v);
 			if(dfs(v, u, ve)) return 1;
 			ve.pop_back();
 		}else if(v != par && v == 1) return ve.pb(v), 1;
