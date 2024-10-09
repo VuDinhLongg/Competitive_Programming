@@ -27,7 +27,7 @@ const int maxn = 1e5 + 7;
 
 void solve(int a[], int n){
 	sort(a+1, a+n+1);
-	int cnt = 1, j = n / 2 + 1;
+	int cnt = 0, j = n / 2 + 1;
 	for(int i=1; i<=n/2; i++){
 		if(a[i] * 2 <= a[j]){
 			++cnt;
@@ -35,7 +35,7 @@ void solve(int a[], int n){
 		}else{
 			--i; ++j; if(j > n) break;
 		}
-	}cout << n - cnt + 1 << el;
+	}cout << n - cnt << el;
 }
 
 signed main(){
