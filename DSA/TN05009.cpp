@@ -33,10 +33,10 @@ bool dfs(int u, int par, vector<int> &ve){
 	vis[u] = 1;
 	for(int &v : a[u]){
 		if(!vis[v]){
-			ve.pb(v);
+	    ve.pb(v);
 			if(dfs(v, u, ve)) return 1;
 			ve.pop_back();
-		}else if(v != par && v == 1) return 1;
+		}else if(v != par && v == 1) return ve.pb(v), 1;
 	}return 0;
 }
 
@@ -47,13 +47,13 @@ signed main(){
 		cin >> n >> m;
 		while(m--){
 			int x, y; cin >> x >> y;
-			a[x].pb(y); a[y].pb(x);
+			a[x].pb(y); 
+			a[y].pb(x);
 		}
 		for(int i=1; i<=n; i++) sort(all(a[i]));
 		vector<int> v;
 		v.pb(1);
 		if(dfs(1, 0, v)){
-			v.pb(1);
 			for(int &i : v) cout << i << ' '; cout << el;
 		}else cout << "NO\n";
 		for(int i=1; i<=n; i++) a[i].clear(), vis[i] = 0;
