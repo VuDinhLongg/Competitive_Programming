@@ -32,15 +32,15 @@ struct node{
 	}
 };
 
-void make(node *root, int x, int y, char c){
-	if(c == 'L') root->l = new node(y);
-	else root->r = new node(y);
+void make(node *root, int val, char c){
+	if(c == 'L') root->l = new node(val);
+	else root->r = new node(val);
 }
 
 void insert(node *root, int x, int y, char c){
 	if(root == NULL) return;
 	if(root->val == x){
-		make(root, x, y, c);
+		make(root, y, c);
 		return;
 	}
 	insert(root->l, x, y, c);
@@ -79,21 +79,41 @@ void levelOrder(node *root){
 	}
 }
 
+void spiralOrder(node *root){
+	stack<node*> st1, st2;
+	st1.push(root);
+	while(!st1.empty() or !st2.empty()){
+		while(!st1.empty()){
+			node *t = st1.top(); st1.pop();
+			cout << t->val << ' ';
+			if(t->r) st2.push(t->r);
+			if(t->l) st2.push(t->l); 
+		}
+		while(!st2.empty()){
+			node *t = st2.top(); st2.pop();
+			cout << t->val << ' ';
+			if(t->l) st1.push(t->l);
+			if(t->r) st1.push(t->r);
+		}
+	}
+}
+
 void LonggVuz(){
 	int n; cin >> n;
 	node *root;
-	for(int i=1; i<=n; i++){
+	for(int i=0; i<n; i++){
 		int x, y; char c;
 		cin >> x >> y >> c;
-		if(i == 1){
+		if(!i){
 			root = new node(x);
-			make(root, x, y, c);
+			make(root, y, c);
 		}else insert(root, x, y, c);
 	}
 	preOrder(root); cout << el;
 	inOrder(root); cout << el;
 	postOrder(root); cout << el;
 	levelOrder(root); cout << el;
+	spiralOrder(root); cout << el;
 }
 
 signed main(){
@@ -104,7 +124,6 @@ signed main(){
 	
 	End();
 }
-
 /*
 3
 6
