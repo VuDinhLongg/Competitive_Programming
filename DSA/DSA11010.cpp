@@ -47,16 +47,15 @@ void insert(node *root, int x, int y, char c){
 	insert(root->r, x, y, c);
 }
 
-int h;
 int height(node *root){
 	if(root == NULL) return 0;
 	return 1 + max(height(root->l), height(root->r));
 }
 
-bool check1(node *root, int level){
+bool check1(node *root, int level, int h){
 	if(root == NULL) 
 		return level == h;
-	return check1(root->l, level + 1) and check1(root->r, level + 1);
+	return check1(root->l, level + 1, h) and check1(root->r, level + 1, h);
 }
 
 bool check2(node *root){
@@ -78,8 +77,7 @@ void LonggVuz(){
 			make(root, y, c);
 		}else insert(root, x, y, c);
 	}
-	h = height(root);
-	if(check1(root, 0) and check2(root)) cout << "Yes\n";
+	if(check1(root, 0, height(root)) and check2(root)) cout << "Yes\n";
 	else cout << "No\n";
 }
 
