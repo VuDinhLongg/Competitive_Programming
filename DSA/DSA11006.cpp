@@ -50,26 +50,18 @@ void insert(node *root, int x, int y, char c){
 void spiralOrder(node *root){
 	stack<node*> st1, st2;
 	st1.push(root);
-	int i = 1;
-	while(i++){
-		if(i % 2){
-			if(!st1.empty()){
-				while(!st1.empty()){
-					node *t = st1.top(); st1.pop();
-					cout << t->val << ' ';
-					if(t->r) st2.push(t->r);
-					if(t->l) st2.push(t->l); 
-				}
-			}else break;
-		}else{
-			if(!st2.empty()){
-				while(!st2.empty()){
-					node *t = st2.top(); st2.pop();
-					cout << t->val << ' ';
-					if(t->l) st1.push(t->l);
-					if(t->r) st1.push(t->r);
-				}
-			}
+	while(!st1.empty() or !st2.empty()){
+		while(!st1.empty()){
+			node *t = st1.top(); st1.pop();
+			cout << t->val << ' ';
+			if(t->r) st2.push(t->r);
+			if(t->l) st2.push(t->l); 
+		}
+		while(!st2.empty()){
+			node *t = st2.top(); st2.pop();
+			cout << t->val << ' ';
+			if(t->l) st1.push(t->l);
+			if(t->r) st1.push(t->r);
 		}
 	}
 }
