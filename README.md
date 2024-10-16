@@ -1,4 +1,4 @@
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Roboto&pause=1000&color=E1F700FF&width=700&repeat=true&lines=Chào+mừng+các+bạn+đến+với+Bảo+Tàng+Code+Lỗi+!!!)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Roboto&pause=1000&color=E1F700FF&width=500&repeat=true&lines=Chào+mừng+các+bạn+đến+với+Bảo+Tàng+Code+Lỗi+!!!)](https://git.io/typing-svg)
 ---
 Nơi đây lưu giữ kỉ niệm của mình với [**Code PTIT**](code.ptit.edu.vn) cùng với các nền tảng lập trình thi đấu khác 🧑‍💻⚡️💥
 
