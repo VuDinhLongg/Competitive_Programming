@@ -1,4 +1,4 @@
-*/
+/*
   https://luyencode.net/problem/perlis
 */
 // LonggVu.
