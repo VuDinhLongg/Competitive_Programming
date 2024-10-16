@@ -32,7 +32,7 @@ int val(int a, int b){
 
 void LonggVuz(){
 	int a, b; cin >> a >> b;
-	int res, mi = 1e10;
+	int res = oo, mi = oo;
 	int l = a, r = b;
 	while(l <= r){
 		int m = (l + r) / 2;
