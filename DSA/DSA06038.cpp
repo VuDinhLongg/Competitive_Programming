@@ -17,55 +17,46 @@ void End(){
 #define is insert
 #define el '\n'
 #define ld long double
-#define int int32_t
+#define int int64_t
 
 const int mod = 1e9 + 7;
+const int oo = 1e18 + 7;
 const int mxn = 1e5 + 7;
 
-int n, a[mxn], f[4 * mxn];
-map<int, int> mp;
+int f[mxn];
 
-void update(int id, int l, int r, int pos){
-	if(l == r){
-		++f[id]; return;
-	}
-	int m = (l + r) / 2;
-	if(pos <= m) update(id * 2, l, m, pos);
-	else update(id * 2 + 1, m + 1, r, pos);
-	f[id] = f[id * 2] + f[id * 2 + 1];
+int get(int x){
+	int res = 0;
+	while(x < mxn){
+		res += f[x];
+		x += x & -x;
+	}return res;
 }
 
-int get(int id, int l, int r, int u, int v){
-	if(r < u or v < l) return 0;
-	if(u <= l and r <= v) return f[id];
-	int m = (l + r) / 2;
-	return get(id * 2, l, m, u, v) + get(id * 2 + 1, m + 1, r, u, v);
+void update(int x){
+	while(x > 0){
+		++f[x];
+		x -= x & -x;
+	}
 }
 
 void LonggVuz(){
-	cin >> n;
+	int n; cin >> n;
+	int a[n+5];
 	for(int i=1; i<=n; i++){
 		cin >> a[i];
-		mp[a[i]] = 1;
-	}
-	int tmp = 1;
-	for(auto &i : mp){
-		mp[i.first] = tmp;
-		++tmp;
 	}
 	int res = 0;
 	vector<int> v;
 	for(int i=1; i<=n; i++){
 		if(a[i] % 2 == 0){
+			res += get(a[i] + 1);
 			v.pb(a[i]);
-			res += get(1, 1, n, mp[a[i]] + 1, n);
 		}else{
-			for(int &i : v){
-				update(1, 1, n, mp[i]);
-			}v.clear();
+			for(int &i : v) update(i);
+			v.clear();
 		}
-	}
-	cout << res;
+	}cout << res << el;
 }
 
 signed main(){
