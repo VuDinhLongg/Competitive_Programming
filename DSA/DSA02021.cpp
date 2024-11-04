@@ -1,45 +1,46 @@
-// LonggVuz.
+// LonggVuz
 #include<bits/stdc++.h>
 using namespace std;
-// Noob C++
+// Think twice, code once ^.^
 void End(){
-    cerr << "=> Thời gian code chạy: ";
-    cerr << (1.0 * clock() / CLOCKS_PER_SEC) << " giây" << string(27, '\t');
+    cerr << "=> Smoothly Finished! Time taken: ";
+    cerr << (0.001 * clock()) << "s" << string(25, '\t');
 }
-#define LonggVuz() ios_base::sync_with_stdio(false); cin.tie(NULL);
-#define use(x) freopen(x".inp", "r", stdin); freopen(x".out", "w", stdout);
+#define Sonic() cin.tie(0) -> sync_with_stdio(0)
+#define out(x) return cout << x << el, void()
 #define fix(x) fixed << setprecision(x)
-#define all(x) x.begin(), x.end()
+#define all(x) begin(x), end(x)
 #define len(x) (int)x.size()
-#define ms(x) memset(x, 0, sizeof(x))
-#define tc() int TC; cin >> TC; while(TC--)
-#define el '\n'
-#define fi first
-#define se second
+#define ms(a, x) memset(a, x, sizeof(a))
+#define bit(n, x) (n >> x & 1)
 #define pb push_back
-#define str string
-#define int int64_t
+#define is insert
+#define el '\n'
 #define ld long double
+#define int int64_t
 
 const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
-const int maxn = 1e6 + 7;
+const int mxn = 1e6 + 7;
 
-
+void LonggVuz(){
+	string a; int k;
+	cin >> a >> k;
+	int n = len(a);
+	a = "@" + a;
+	while(k > n){
+		int s = n;
+		while(s * 2 < k) s *= 2;
+		k -= (s + 1);
+		if(k == 0) k = s;
+	}cout << a[k] << el;
+}
 
 signed main(){
-	LonggVuz();
+	Sonic();
 	
-	tc(){
-		str a; int k; cin >> a >> k;
-		int n = len(a);
-		while(k > n){
-			int tmp = n;
-			while(tmp * 2 < k) tmp *= 2;
-			k -= (tmp + 1);
-			if(k == 0) k = tmp;
-		}cout << a[k - 1] << el;
-	}
+	int TC = 1; cin >> TC;
+	while(TC--) LonggVuz();
 	
 	End();
 }
