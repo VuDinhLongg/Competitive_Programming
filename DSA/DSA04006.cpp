@@ -1,54 +1,52 @@
-// LonggVuz.
+// LonggVuz
 #include<bits/stdc++.h>
 using namespace std;
-// Noob C++
+// Think twice, code once ^.^
 void End(){
-    cerr << "=> Thời gian code chạy: ";
-    cerr << (1.0 * clock() / CLOCKS_PER_SEC) << " giây" << string(27, '\t');
+    cerr << "=> Smoothly Finished! Time taken: ";
+    cerr << (0.001 * clock()) << "s" << string(25, '\t');
 }
-#define LonggVuz() ios_base::sync_with_stdio(false); cin.tie(NULL);
-#define use(x) freopen(x".inp", "r", stdin); freopen(x".out", "w", stdout);
+#define Sonic() cin.tie(0) -> sync_with_stdio(0)
+#define out(x) return cout << x << el, void()
 #define fix(x) fixed << setprecision(x)
-#define all(x) x.begin(), x.end()
-#define len(x) (int)x.size()
-#define ms(x) memset(x, 0, sizeof(x))
-#define tc() int TC; cin >> TC; while(TC--)
-#define el '\n'
-#define fi first
-#define se second
+#define all(x) begin(x), end(x)
+#define len(x) (int)size(x)
+#define ms(a, x) memset(a, x, sizeof(a))
+#define bit(n, x) (n >> x & 1)
 #define pb push_back
-#define str string
-#define int intmax_t
+#define is insert
+#define el '\n'
 #define ld long double
+#define int int64_t
 
 const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
-const int maxn = 1e6 + 7;
+const int mxn = 1e6 + 7;
 
-int end(int n){
+int length(int n){
 	if(n <= 1) return 1;
-	return 2 * end(n / 2) + 1;
+	return 1 + 2 * length(n / 2);
 }
 
 int cal(int n, int l, int r, int u, int v){
-	if(n == 1){
-		if(l <= u && v <= r) return 1;
-		return 0;
-	}int res = 0;
-	int mid = (u + v) / 2;
-	if(l < mid) res += cal(n / 2, l, r, u, mid - 1);
-	if(mid < r) res += cal(n / 2, l, r, mid + 1, v);
-	if(l <= mid && mid <= r) res += n % 2;
+	if(r < u or v < l) return 0;
+	if(u <= l and r <= v) return n;
+	int mid = (l + r) / 2;
+	int res = cal(n / 2, l, mid - 1, u, v) + cal(n / 2, mid + 1, r, u, v);
+	if(u <= mid and mid <= v) res += n % 2;
 	return res;
 }
 
+void LonggVuz(){
+	int n, l, r; cin >> n >> l >> r;
+	cout << cal(n, 1, length(n), l, r) << el;
+}
+
 signed main(){
-	LonggVuz();
+	Sonic();
 	
-	tc(){
-		int n, l, r; cin >> n >> l >> r;
-		cout << cal(n, l, r, 1, end(n)) << el;
-	}
+	int TC = 1; cin >> TC;
+	while(TC--) LonggVuz();
 	
 	End();
 }
