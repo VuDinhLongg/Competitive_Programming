@@ -8,4 +8,4 @@ Author: [**_LonggVuz.**](https://facebook.com/longgvuz/) - **B23DCAT175**
 
 -> [**My VNOI account**](https://oj.vnoi.info/user/vudinhlong) <-
 
--> [**My Codeforces account**](https://codeforces.com/profile/vudinhlongg) <-
+-> [**My Codeforces account**](https://codeforces.com/profile/LonggVuz) <-
