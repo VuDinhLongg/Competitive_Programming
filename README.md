@@ -2,10 +2,10 @@
 ---
 Nơi đây lưu giữ kỉ niệm của mình với [**Code PTIT**](code.ptit.edu.vn) cùng với các nền tảng lập trình thi đấu khác 🧑‍💻⚡️💥
 
-Author: [**_LonggVuz.**](https://facebook.com/longgvuz/) - **B23DCAT175**
+Author: [**_LonggVuz.**](https://facebook.com/longgvuz/) --- **B23DCAT175**
 
--> [**My LCOJ account**](https://luyencode.net/user/vudinhlong) <-
+$\to$ [**My Codeforces account**](https://codeforces.com/profile/LonggVuz) $\to$
 
--> [**My VNOI account**](https://oj.vnoi.info/user/vudinhlong) <-
+$\to$ [**My VNOI account**](https://oj.vnoi.info/user/vudinhlong) $\to$
 
--> [**My Codeforces account**](https://codeforces.com/profile/LonggVuz) <-
+$\to$ [**My LCOJ account**](https://luyencode.net/user/vudinhlong) $\to$
