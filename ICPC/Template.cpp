@@ -1,19 +1,21 @@
 // LonggVuz
 #include<bits/stdc++.h>
 using namespace std;
-// ☞ Think twice, solve once ☜
-#define fo(i, n) for(int i=1; i<=n; i++)
-#define fix(x) fixed << setprecision(x)
+// ☞ Voldemort ☜
+#define el cout << '\n'
+#define fo(i, a, b) for(int i=a; i<=b; i++)
+#define fd(i, a, b) for(int i=a; i>=b; i--)
 #define out(x) return cout << x, void()
 #define all(x) x.begin(), x.end()
 #define len(x) (int)x.size()
-#define el '\n'
-#define db double
+#define vec vector
+#define pb push_back
+#define po pop_back
 #define int int64_t
 
 const int mod = 1e9 + 7;
-const int oo = 1e16 + 8;
-const int mxn = 1e6 + 9;
+const int oo = 8e18 + 8;
+const int mxn = 1e6 + 5;
 
 
 
@@ -22,13 +24,14 @@ void LonggVuz(){
 }
 
 signed main(){
-    cin.tie(0) -> sync_with_stdio(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
     
-    int tc = 1; //cin >> tc;
-    while(tc--){
+    int o = 1; //cin >> o;
+    while(o){
         LonggVuz();
-        if(tc) cout << el;
+        if(--o) el;
     }
     
-    cerr << "☞ Execution Time: " << 0.001 * clock() << "s ☜\n";
+    cerr << "Execution Time: " << 0.001 * clock() << "s\n";
 }
