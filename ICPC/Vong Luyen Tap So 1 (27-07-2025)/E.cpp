@@ -25,9 +25,9 @@ void LonggVuz(){
     int fb[100];
     fb[1] = 1; fb[2] = 2;
     fo(i, 3, 80) fb[i] = fb[i - 1] + fb[i - 2];
-    int res = oo, cur = n;
+    int res = 0, cur = n;
     fd(i, 80, 1) if(cur >= fb[i]){
-        res = min(res, fb[i]);
+        res = fb[i];
         cur -= fb[i];
     }
     cout << res;
