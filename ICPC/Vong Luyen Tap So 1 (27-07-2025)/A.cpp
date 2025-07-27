@@ -22,14 +22,6 @@ const int mxn = 1e6 + 9;
 #define fi first
 #define se second
 
-int gcd(int a, int b){
-    return b == 0 ? a : gcd(b, a % b);
-}
-
-int lcm(int a, int b){
-    return a / gcd(max(a, b), min(a, b)) * b;
-}
-
 bool check(pe &a, pe &b, pe &c){
     int a1 = a.fi, a2 = a.se;
     int b1 = b.fi, b2 = b.se;
