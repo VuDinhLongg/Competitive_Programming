@@ -61,8 +61,10 @@ void LonggVuz(){
             int v = s[j] - 'a';
             if(t.c[u][v] == 0) break;
             u = t.c[u][v];
-            dp[i] += dp[j - 1] * t.e[u];
-            dp[i] %= mod;
+            if(t.e[u]){
+                dp[i] += dp[j - 1];
+                dp[i] %= mod;
+            }
         }
     }
     cout << dp[n];
