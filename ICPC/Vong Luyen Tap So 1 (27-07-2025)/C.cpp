@@ -22,15 +22,13 @@ const int mxn = 1e6 + 9;
 
 void LonggVuz(){
     string s; cin >> s;
-    int n = len(s);
-    vec<int> a, z;
+    int n = len(s), a = oo, z = -oo, o = 0;
     s.insert(begin(s), ' ');
     fo(i, 1, n){
-        if(s[i] == 'A') a.pb(i);
-        if(s[i] == 'Z') z.pb(i);
+        if(s[i] == 'A') a = min(a, 1ll * i);
+        if(s[i] == 'Z') z = max(z, 1ll * i);
     }
-    if(len(a) == 0 or len(z) == 0) cout << 0;
-    else cout << z.back() - a[0] + 1;
+    cout << max(z - a + 1, o);
 }
 
 signed main(){
