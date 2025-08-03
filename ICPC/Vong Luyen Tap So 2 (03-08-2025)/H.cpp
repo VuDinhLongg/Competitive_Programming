@@ -42,7 +42,6 @@ void LonggVuz(){
     dsu d(n);
     fo(i, 1, m){
         int x, y; cin >> x >> y;
-        if(d.get(x) == d.get(y)) continue;
         d.uni(x, y);
     }
     int res = 0;
