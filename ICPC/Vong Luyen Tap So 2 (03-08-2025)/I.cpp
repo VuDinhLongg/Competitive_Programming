@@ -18,20 +18,8 @@ const int mod = 1e9 + 7;
 const int oo = 1e18 + 8;
 const int mxn = 1e6 + 9;
 
-#define i128 __int128
-string value(i128 n){
-    string s = "";
-    bool neg = 0;
-    if(n < 0) neg = 1, n = -n;
-    while(n) s.pb(n % 10 + '0'), n /= 10;
-    reverse(all(s));
-    if(neg) s.insert(begin(s), '-');
-    return s;
-}
-
 string res;
-
-i128 c[66][66];
+int c[66][66];
 
 void run(int a, int b, int k){
     if(a == 0 and b == 0) return;
@@ -43,7 +31,7 @@ void run(int a, int b, int k){
         res.pb('b'); --b;
         run(a, b, k); return;
     }
-    i128 n = c[a + b - 1][a - 1];
+    int n = c[a + b - 1][a - 1];
     if(k > n){
         k -= n;
         res.pb('b');
