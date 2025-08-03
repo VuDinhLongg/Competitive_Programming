@@ -18,6 +18,23 @@ const int mod = 998244353;
 const int oo = 1e18 + 8;
 const int mxn = 2e5 + 9;
 
+/*
+Main Idea:
+1, Sắp xếp mảng tăng dần, sau đó ách mảng thành từng cấp số cộng có công sai là k.
+    Ví dụ: test 2 4 7 9, ta sẽ tách thành [2, 4] và [7, 9] để xử lý riêng.
+2, Với dãy [2, 4], ta sẽ chỉ có 1 cách tạo ra dãy "xấu" là dãy [2, 4].
+    Xét tiếp đến dãy [7, 9], ta vẫn chỉ có 1 cách tạo ra dãy xấu.
+    Tuy nhiên, khi ta ghép với kết quả đang có là 1 (của dãy [2, 4]),
+    ta sẽ có các cách ghép như sau:
+        +, Tính tổng số lượng phần tử ĐÃ xử lý (ở đây là 2) => có 4 trạng thái mask
+            tức là có thể ghép ra [7, 9], [2, 7, 9], [4, 7, 9], [2, 4, 7, 9].
+        +, Tính tổng số lượng phần tử ĐANG xử lý (ở đây là 2) => 2 trạng thái ko tạo ra dãy xấu
+            tức là [7], [9] (bỏ đi số mask "xấu" và mask rỗng)
+            tức là có thể ghép ra [2, 4, 7], [2, 4, 9].
+3, Chốt lại, ta sẽ có 7 masks xấu là [2, 4], [7, 9], [2, 7, 9], [4, 7, 9], [2, 4, 7, 9], [2, 4, 7], [2, 4, 9]
+    Sau đó, lấy tổng 2^n - 1 mask trừ đi số mask xấu là ra đáp án.
+*/
+
 int n, k, a[mxn], h[mxn];
 
 void pre(){
