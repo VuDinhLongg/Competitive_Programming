@@ -63,22 +63,27 @@ void LonggVuz(){
             else len.pb(len.back() + cnt[x]);
             x += k;
         }
-        int sum = 0;
-        vec<int> dp(len(v)), pf(len(v));
-        fo(j, 1, len(v) - 1){
-            int w1 = h[cnt[v[j]]] - 1;
-            int w2 = h[cnt[v[j - 1]]] - 1;
-            dp[j] = w1 * w2 % mod * h[len[j] - cnt[v[j]] - cnt[v[j - 1]]] % mod;
-            sum = (sum + dp[j]) % mod;
-            if(j >= 2) sum = (sum + w1 * pf[j - 2] % mod) % mod;
-            pf[j] = (pf[j - 1] + dp[j]) % mod;
+        int sum = 0, m = len(v);
+        vec<int> f(m), g(m), pf(m);
+        f[0] = g[0] = pf[0] = 0;
+        fo(j, 1, m - 1){
+            int c1 = cnt[v[j]];
+            int c2 = cnt[v[j - 1]];
+            int w1 = h[c1] - 1;
+            int w2 = h[c2] - 1;
+            f[j] = w1 * w2 % mod * h[len[j] - c1 - c2] % mod;
+            if(j >= 2) g[j] = (w1 * pf[j - 2]) % mod;
+            pf[j] = (pf[j - 1] + g[j] + f[j]) % mod;
+            sum = (sum + f[j] + g[j]) % mod;
+            // cout << v[j] << ' ' << f[j] << ' ' << g[j] << ' ' << pf[j] << '\n';
         }
-        res = (res + res * (h[len.back()] - 1 - sum + mod) % mod) % mod;
-        res = (res + (sum * h[cur]) % mod) % mod;
+        res = (res + res * (h[len.back()] - 1 - pf[m - 1] + mod) % mod) % mod;
+        res = (res + (pf[m - 1] * h[cur]) % mod) % mod;
         cur += len.back();
         ++i;
+        // for(int &x : v) cout << x << ' '; cout << sum, el;
     }
-    res = (h[n] - 1 - res + mod) % mod;
+    res = (h[n] - 1 - res + mod * 2) % mod;
     cout << res;
 }
 
