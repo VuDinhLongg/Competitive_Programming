@@ -4,6 +4,6 @@ Nơi đây lưu giữ kỉ niệm của mình với [**Code PTIT**](code.ptit.ed
 
 Author: [**_LonggVuz.**](https://facebook.com/longgvuz/) --- **B23DCAT175**
 
-$\to$ [**My Codeforces account**](https://codeforces.com/profile/LonggVuz) $\to$
+[**My Codeforces account**](https://codeforces.com/profile/LonggVuz)
 
-$\to$ [**My VNOI account**](https://oj.vnoi.info/user/vudinhlong) $\to$
+[**My VNOI account**](https://oj.vnoi.info/user/vudinhlong)
