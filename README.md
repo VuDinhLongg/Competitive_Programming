@@ -7,5 +7,3 @@ Author: [**_LonggVuz.**](https://facebook.com/longgvuz/) --- **B23DCAT175**
 $\to$ [**My Codeforces account**](https://codeforces.com/profile/LonggVuz) $\to$
 
 $\to$ [**My VNOI account**](https://oj.vnoi.info/user/vudinhlong) $\to$
-
-$\to$ [**My LCOJ account**](https://luyencode.net/user/vudinhlong) $\to$
