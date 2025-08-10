@@ -1,7 +1,10 @@
 /*
-Sân thi đấu robocon có kích thước vuông gồm NxN ô bàn cờ. Tại mỗi ô có đặt một số lượng hộp quà nhất định. Thời gian di chuyển giữa 2 ô liền nhau (trái, phải, trên, dưới) là T đơn vị. Ban đầu, robot ở vị trí xuất phát (1, 1) và cần di chuyển tới vị trí đích (N, N).
-Luật chơi quy định của BTC là cứ mỗi khi robot di chuyển đủ 3 bước, robot sẽ phải dừng lại ở vị trí hiện tại để thu lượm đủ tất cả các hộp quà hiện có (kể cả trường hợp vị trí này là ô kết thúc). Để lấy 1 hộp quà, robot mất 1 đơn vị thời gian.
-Nhiệm vụ của các bạn là hãy sắp xếp chiến thuật di chuyển robot tối ưu, sao cho có thể đi được từ ô xuất phát tới đích nhanh nhất có thể? Có nhiều ô có rất nhiều hộp quà, vì vậy, bạn không nên dừng lại ở những vị trí này để lấy quà, nếu không sẽ mất nhiều thời gian.
+Sân thi đấu robocon có kích thước vuông gồm NxN ô bàn cờ. Tại mỗi ô có đặt một số lượng hộp quà nhất định.
+Thời gian di chuyển giữa 2 ô liền nhau (trái, phải, trên, dưới) là T đơn vị. Ban đầu, robot ở vị trí xuất phát (1, 1) và cần di chuyển tới vị trí đích (N, N).
+Luật chơi quy định của BTC là cứ mỗi khi robot di chuyển đủ 3 bước, robot sẽ phải dừng lại ở vị trí hiện tại để thu lượm đủ tất cả các hộp quà hiện có
+(kể cả trường hợp vị trí này là ô kết thúc). Để lấy 1 hộp quà, robot mất 1 đơn vị thời gian.
+Nhiệm vụ của các bạn là hãy sắp xếp chiến thuật di chuyển robot tối ưu, sao cho có thể đi được từ ô xuất phát tới đích nhanh nhất có thể?
+Có nhiều ô có rất nhiều hộp quà, vì vậy, bạn không nên dừng lại ở những vị trí này để lấy quà, nếu không sẽ mất nhiều thời gian.
 Input:
 Dòng đầu tiên chứa hai số nguyên N và T (3 <= N <= 100, 0 <= T <= 10^6).
 N dòng tiếp theo, mỗi dòng gồm N số nguyên mô tả bảng A[i][j] (1 <= A[i][j] <= 10^5).
