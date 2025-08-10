@@ -18,15 +18,7 @@ const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
 const int mxn = 1e5 + 7;
 
-int n, a[mxn], pf[mxn];
-
-bool check(int mid){
-    fo(i, 1, n - mid + 1){
-        int cur = pf[i + mid - 1] ^ pf[i - 1];
-        if(cur < a[i - 1] or cur > a[i + mid]) return 1;
-    }
-    return 0;
-}
+int n, a[mxn];
 
 void LonggVuz(){
     cin >> n;
