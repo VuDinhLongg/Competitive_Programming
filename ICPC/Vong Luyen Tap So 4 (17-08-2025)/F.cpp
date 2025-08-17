@@ -23,14 +23,12 @@ const int mxn = 1e6 + 7;
 void LonggVuz(){
     string s; cin >> s;
     int res = stoll(s);
-    char c = s[0];
-    s.erase(begin(s));
-    s.pub(c);
-    res += stoll(s);
-    c = s[0];
-    s.erase(begin(s));
-    s.pub(c);
-    res += stoll(s);
+    fo(i, 1, 2){
+        char c = s[0];
+        s.erase(begin(s));
+        s.pub(c);
+        res += stoll(s);
+    }
     cout << res;
 }
 
