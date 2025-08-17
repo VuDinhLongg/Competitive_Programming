@@ -70,10 +70,10 @@ void LonggVuz(){
             dp[s] = dpu; sz[s] = szu; par[s] = p;
             if(sz[u] > sz[son[s]]) son[s] = u;
             else if(sz[u] == sz[son[s]] and u < son[s]) son[s] = u;
-            son[p] = 0;
             // cha cua u
             ke[p].erase(find(all(ke[p]), u));
             ke[p].pub(s);
+            son[p] = 0;
             for(int &v : ke[p]) if(v != par[p]){
                 if(sz[v] > sz[son[p]]) son[p] = v;
                 else if(sz[v] == sz[son[p]] and v < son[p]) son[p] = v;
