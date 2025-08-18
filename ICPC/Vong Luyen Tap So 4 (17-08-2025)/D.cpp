@@ -21,8 +21,9 @@ const int mxn = 1e5 + 7;
 #define pe pair<int, int>
 #define fi first
 #define se second
-int n, q, a[mxn], dp[mxn], sz[mxn], par[mxn], son[mxn];
-vec<int> ke[mxn], pos[mxn];
+int n, q, a[mxn], dp[mxn], sz[mxn], par[mxn];
+vec<int> ke[mxn];
+set<pe> son[mxn];
 
 void dfs(int u, int p = 0){
     dp[u] = a[u];
@@ -32,11 +33,7 @@ void dfs(int u, int p = 0){
         dfs(v, u);
         dp[u] += dp[v];
         sz[u] += sz[v];
-        if(sz[v] > sz[son[u]]){
-            son[u] = v;
-        }else if(sz[v] == sz[son[u]] and v < son[u]){
-            son[u] = v;
-        }
+        son[u].insert({sz[v], -v});
     }
 }
 
@@ -52,32 +49,22 @@ void LonggVuz(){
     while(q--){
         int t, u; cin >> t >> u;
         if(t == 1){
-            // cout << par[u] << ' ' << son[u] << ' ';
             cout << dp[u], el;
         }else{
-            if(par[u] == 0 or son[u] == 0) continue;
-            int s = son[u], p = par[u];
+            if(u == 1 or son[u].empty()) continue;
+            int p = par[u];
+            auto [szv, v] = *son[u].rbegin();
+            v = -v;
             // dinh u
             int dpu = dp[u], szu = sz[u];
-            ke[u].erase(find(all(ke[u]), p));
-            dp[u] -= dp[s]; sz[u] -= sz[s]; par[u] = s; son[u] = 0;
-            for(int &v : ke[u]) if(v != par[u]){
-                if(sz[v] > sz[son[u]]) son[u] = v;
-                else if(sz[v] == sz[son[u]] and v < son[u]) son[u] = v;
-            }
-            // con cua u
-            ke[s].pub(p);
-            dp[s] = dpu; sz[s] = szu; par[s] = p;
-            if(sz[u] > sz[son[s]]) son[s] = u;
-            else if(sz[u] == sz[son[s]] and u < son[s]) son[s] = u;
-            // cha cua u
-            ke[p].erase(find(all(ke[p]), u));
-            ke[p].pub(s);
-            son[p] = 0;
-            for(int &v : ke[p]) if(v != par[p]){
-                if(sz[v] > sz[son[p]]) son[p] = v;
-                else if(sz[v] == sz[son[p]] and v < son[p]) son[p] = v;
-            }
+            dp[u] -= dp[v]; sz[u] -= sz[v]; par[u] = v;
+            son[u].erase(--son[u].end());
+            // dinh v (con cua u)
+            dp[v] = dpu; sz[v] = szu; par[v] = p;
+            son[v].insert({sz[u], -u});
+            // dinh p (cha cua u)
+            son[p].erase(son[p].find({szu, -u}));
+            son[p].insert({sz[v], -v});
         }
     }
 }
