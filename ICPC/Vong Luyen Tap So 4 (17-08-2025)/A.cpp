@@ -1,74 +1,83 @@
-// LonggVuz
-#include<bits/stdc++.h>
+// BidenJR
+#include <bits/stdc++.h>
 using namespace std;
-#define el cout << '\n'
-#define inc(i, a, b, c) for(int32_t i=a; i<=b; i+=c)
-#define dec(i, a, b, c) for(int32_t i=a; i>=b; i-=c)
-#define fo(i, a, b) for(int32_t i=a; i<=b; i++)
-#define fd(i, a, b) for(int32_t i=a; i>=b; i--)
-#define out(x) return void(cout << (x));
-#define all(x) begin(x), end(x)
-#define len(x) (int)(x).size()
-#define vec vector
-#define pub push_back
-#define pob pop_back
-#define int int64_t
+typedef long long ll;
+#define ed "\n"
+#define use(x) freopen(x".inp", "r", stdin); freopen(x".out", "w", stdout);
+#define BidenJr 0
+int x_4axis[] = {-1, 0, 0, 1};
+int y_4axis[] = {0, -1, 1, 0};
+int x_8axis[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+int y_8axis[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+const int MOD = 1e9 + 7;
 
-const int mod = 1e9 + 7;
-const int oo = 1e18 + 7;
-const int mxn = 1e3 + 7;
-
-int n;
-char a[mxn][mxn];
-
-void LonggVuz(){
-    cin >> n;
-    fo(i, 1, n) fo(j, 1, n) cin >> a[i][j];
-    fo(i, 1, n) fo(j, 1, n){
-        if(j + 5 <= n){
-            int x = i, y = j, cnt = 0;
-            while(y < j + 6){
-                cnt += a[x][y] == '#';
-                ++y;
+ll f3(int n, int m) {
+    int oo = m + 1;
+    map<tuple<int, int, int>, ll> dp;
+    dp[{oo, oo, oo}] = 1;
+    for (int i = 0; i < n; i++) {
+        map<tuple<int, int, int>, ll> tmp;
+        for (auto& p : dp) {
+            auto [a, b, c] = p.first;
+            ll cnt = p.second;
+            for (int x = 1; x <= m; x++) {
+                tuple<int, int, int> next_st;
+                if (x <= a) {
+                    next_st = {x, b, c};
+                } else if (x <= b) {
+                    next_st = {a, x, c};
+                } else if (x <= c) {
+                    next_st = {a, b, x};
+                } else {
+                    continue;
+                }
+                tmp[next_st] = (tmp[next_st] + cnt) % MOD;
             }
-            if(cnt >= 4) out("Yes");
         }
-        if(i + 5 <= n){
-            int x = i, y = j, cnt = 0;
-            while(x < i + 6){
-                cnt += a[x][y] == '#';
-                ++x;
-            }
-            if(cnt >= 4) out("Yes");
-        }
-        if(i + 5 <= n and j + 5 <= n){
-            int x = i, y = j, cnt = 0;
-            while(x < i + 6 and y < j + 6){
-                cnt += a[x][y] == '#';
-                ++x; ++y;
-            }
-            if(cnt >= 4) out("Yes");
-        }
-        if(i + 5 <= n and j - 5 >= 1){
-            int x = i, y = j, cnt = 0;
-            while(x < i + 6 and y > j - 6){
-                cnt += a[x][y] == '#';
-                ++x; --y;
-            }
-            if(cnt >= 4) out("Yes");
-        }
+        dp = move(tmp);
     }
-    cout << "No";
+    ll ans = 0;
+    for (auto& p : dp) {
+        ans = (ans + p.second) % MOD;
+    }
+    return ans;
 }
 
-signed main(){
-    ios::sync_with_stdio(false); cin.tie(nullptr);
-    
-    signed orz = 1; //cin >> orz;
-    while(orz --> 0){
-        LonggVuz();
-        if(orz) el;
+ll f2(int n, int m) {
+    int oo = m + 1;
+    map<tuple<int, int>, ll> dp;
+    dp[{oo, oo}] = 1;
+    for (int i = 0; i < n; i++) {
+        map<tuple<int, int>, ll> tmp;
+        for (auto& p : dp) {
+            auto [a, b] = p.first;
+            ll cnt = p.second;
+            for (int x = 1; x <= m; x++) {
+                tuple<int, int> next_st;
+                if (x <= a) {
+                    next_st = {x, b};
+                } else if (x <= b) {
+                    next_st = {a, x};
+                } else {
+                    continue;
+                }
+                tmp[next_st] = (tmp[next_st] + cnt) % MOD;
+            }
+        }
+        dp = move(tmp);
     }
-    
-    cerr << "Execution Time: " << 0.001 * clock() << "s\n";
+    ll ans = 0;
+    for (auto& p : dp) {
+        ans = (ans + p.second) % MOD;
+    }
+    return ans;
+}
+
+int main() {
+  	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    int n, m;
+    cin >> n >> m;
+    ll ans = (f3(n, m) - f2(n, m) + MOD) % MOD;
+    cout << ans;
+	  return BidenJr;
 }
