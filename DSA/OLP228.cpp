@@ -98,11 +98,8 @@ struct nodetree{
         merge(f[id], f[id * 2], f[id * 2 + 1], m - l + 1, r - m);
     }
     node get(int id, int l, int r, int u, int v){
-        if(r < u or v < l) return node(-1, 0, 0);
-        if(u <= l and r <= v){
-            // cout << l << ' ' << r << ' ' << f[id].ans << ' ' << f[id].op << ' ' << f[id].cl, el;
-            return f[id];
-        }
+        if(r < u or v < l) return node(-1);
+        if(u <= l and r <= v) return f[id];
         push(id, l, r);
         int m = (l + r) >> 1;
         node le = get(id * 2, l, m, u, v);
@@ -111,7 +108,6 @@ struct nodetree{
         if(ri.ans < 0) return le;
         node res;
         merge(res, le, ri, m - l + 1, r - m);
-        // cout << max(l, u) << ' ' << min(r, v) << ' ' << res.ans << ' ' << res.op << ' ' << res.cl, el;
         return res;
     }
 };
