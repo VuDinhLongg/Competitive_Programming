@@ -115,49 +115,6 @@ void LonggVuz(){
     int n = len(a), m = len(b), k = len(c);
     Hash ha(a), hb(b), hc(c);
     {
-        int mask = 0;
-        string x, y, z;
-        if(n >= max(m, k)){
-            x = a;
-            if(m >= k){
-                y = b; z = c;
-                mask = 123;
-            }else{
-                y = c; z = b;
-                mask = 132;
-            }
-        }
-        else if(m >= max(n, k)){
-            x = b;
-            if(n >= k){
-                y = a; z = c;
-                mask = 213;
-            }else{
-                y = c; z = a;
-                mask = 231;
-            }
-        }else{
-            x = c;
-            if(n >= m){
-                y = a; z = b;
-                mask = 312;
-            }else{
-                y = b; z = a;
-                mask = 321;
-            }
-        }
-        if(mask == 132) swap(hb, hc);
-        else if(mask == 213) swap(ha, hb);
-        else if(mask == 231) swap(ha, hb), swap(hb, hc);
-        else if(mask == 312) swap(hb, hc), swap(ha, hb);
-        else if(mask == 321) swap(ha, hc);
-        a = x; b = y; c = z;
-        n = len(a) - 1;
-        m = len(b) - 1;
-        k = len(c) - 1;
-        // cout << a, el;
-        // cout << b, el;
-        // cout << c, el;
         fo(i, 1, n - m + 1){
             if(ha.get(i, i + m - 1) == hb.get(1, m)){
                 fo(j, 1, n - k + 1){
