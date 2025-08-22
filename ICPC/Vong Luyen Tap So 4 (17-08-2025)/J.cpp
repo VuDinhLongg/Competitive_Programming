@@ -28,17 +28,14 @@ void LonggVuz(){
         cin >> a[i][j];
     }
     int res = 0;
-    fo(i, 1, n) fo(j, 1, m){
-        res += a[i][j] * 4;
-        if(a[i][j] > 0) res += 2;
+    fo(i, 1, n) fo(j, 1, m) if(a[i][j] > 0){
+        res += a[i][j] * 4 + 2;
         fo(k, 0, 3){
             int ii = i + dx[k];
             int jj = j + dy[k];
-            int sub = 0;
             if(1 <= ii and ii <= n and 1 <= jj and jj <= m){
-                sub += min(a[i][j], a[ii][jj]);
+                res -= min(a[i][j], a[ii][jj]);
             }
-            res -= sub;
         }
     }
     cout << res;
