@@ -127,3 +127,33 @@ signed main(){
     
     cerr << "Execution Time: " << 0.001 * clock() << "s\n";
 }
+/*
+Input 1:            Output 1:
+3                   april
+april               quilt
+purple              -
+quilt               purple
+5                   -
+rprit
+ahqln
+ietep
+zrysg
+ogwey
+3    
+pel
+aup
+bcr
+0
+
+Input 2:            Output 2:
+3                   abc
+abc                 dcm
+xyz                 xyz
+dcm                 -
+3
+axa
+ybd
+zmc
+0
+*/
+
