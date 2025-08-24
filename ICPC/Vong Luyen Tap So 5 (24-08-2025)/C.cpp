@@ -18,15 +18,6 @@ const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
 const int mxn = 1e6 + 7;
 
-int mu(int a, int b){
-    int res = 1;
-    while(b){
-        if(b & 1) res = (res * a);
-        a *= a; b /= 2;
-    }
-    return res;
-}
-
 void LonggVuz(){
     int n, p; cin >> n >> p;
     int res = 1;
@@ -36,7 +27,10 @@ void LonggVuz(){
             ++cnt;
             p /= i;
         }
-        if(cnt >= n) res *= mu(i, cnt / n);
+        if(cnt >= n){
+            cnt /= n;
+            while(cnt--) res *= i;
+        }
     }
     if(p > 1 and 1 >= n) res *= p;
     cout << res;
