@@ -17,13 +17,13 @@ const int mod = 1e9 + 7;
 const int mxn = 6e5 + 7;
 
 #define bit(n, i) (n >> (i) & 1)
-int n, q, a[mxn], dem[mxn], ans[mxn];
+int n, q, a[mxn], dem[mxn], ans[mxn], mx = (1 << 19) + 1;
 // trie
-int child[mxn * 22][2], cnt;
+int child[mxn * 20][2], cnt;
 
 void add(int x){
     int u = 0;
-    fd(i, 20, 0){
+    fd(i, 19, 0){
         bool k = bit(x, i);
         if(child[u][k] == 0){
             child[u][k] = ++cnt;
@@ -38,13 +38,13 @@ void LonggVuz(){
         cin >> a[i];
         ++dem[a[i]];
     }
-    fo(i, 0, 6e5) if(dem[i] == 0) add(i);
+    fo(i, 0, mx) if(dem[i] == 0) add(i);
     int cur = 0;
     while(q--){
         int x; cin >> x;
         cur ^= x;
         int res = 0, u = 0;
-        fd(i, 20, 0){
+        fd(i, 19, 0){
             int k = bit(cur, i);
             if(child[u][k]){
                 u = child[u][k];
