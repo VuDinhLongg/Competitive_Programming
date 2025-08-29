@@ -6,4 +6,4 @@ Author: [**_LonggVuz.**](https://facebook.com/longgvuz/) --- **B23DCAT175**
 
 [**My Codeforces account**](https://codeforces.com/profile/LonggVuz)
 
-[**My VNOI account**](https://oj.vnoi.info/user/vudinhlong)
+[**My VNOJ account**](https://oj.vnoi.info/user/vudinhlong)
