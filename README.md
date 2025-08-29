@@ -2,8 +2,8 @@
 ---
 Nơi đây lưu giữ kỉ niệm của mình với [**Code PTIT**](code.ptit.edu.vn) cùng với các nền tảng lập trình thi đấu khác ❤️‍🔥
 
-$\to$ [**My Facebook**](https://facebook.com/longgvuz/) $\leftarrow$
+--> [**My Facebook**](https://facebook.com/longgvuz/) <--
 
-$\to$ [**My Codeforces**](https://codeforces.com/profile/LonggVuz) $\leftarrow$
+--> [**My Codeforces**](https://codeforces.com/profile/LonggVuz) <--
 
-$\to$ [**My VNOJ**](https://oj.vnoi.info/user/vudinhlong) $\leftarrow$
+--> [**My VNOJ**](https://oj.vnoi.info/user/vudinhlong) <--
