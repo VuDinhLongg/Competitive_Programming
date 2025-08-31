@@ -16,7 +16,7 @@ using namespace std;
 
 const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
-const int mxn = 1e6 + 7;
+const int mxn = 2e5 + 7;
 
 struct canh{
     int u, v, w;
