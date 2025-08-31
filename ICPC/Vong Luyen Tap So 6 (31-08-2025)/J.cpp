@@ -17,7 +17,7 @@ using namespace std;
 const int mod = 1e9 + 7;
 const int mxn = 1e6 + 7;
 
-#define ld long double
+#define ld double
 ld dp[101][101][101], one = 1.0;
 
 ld cal(int a, int b, int c){
