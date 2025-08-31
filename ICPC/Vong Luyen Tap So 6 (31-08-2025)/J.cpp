@@ -12,29 +12,26 @@ using namespace std;
 #define vec vector
 #define pub push_back
 #define pob pop_back
-#define int int64_t
 
 const int mod = 1e9 + 7;
 const int mxn = 1e6 + 7;
 
-#define ld double
-ld dp[101][101][101], one = 1.0;
+double dp[101][101][101];
 
-ld cal(int a, int b, int c){
-    if(a == 100 or b == 100 or c == 100){
-        return 1.0;
-    }
-    ld &res = dp[a][b][c];
+double cal(int a, int b, int c){
+    if(max({a, b, c}) == 100) return 1.0;
+    double &res = dp[a][b][c];
     if(res) return res;
-    res += one * a / (a + b + c) * (cal(a + 1, b, c) + 1.0);
-    res += one * b / (a + b + c) * (cal(a, b + 1, c) + 1.0);
-    res += one * c / (a + b + c) * (cal(a, b, c + 1) + 1.0);
+    int s = a + b + c;
+    res += (cal(a + 1, b, c) + 1) * a / s;
+    res += (cal(a, b + 1, c) + 1) * b / s;
+    res += (cal(a, b, c + 1) + 1) * c / s;
     return res;
 }
 
 void LonggVuz(){
     int a, b, c; cin >> a >> b >> c;
-    cout << fixed << setprecision(6) << cal(a, b, c) - 1.0;
+    cout << fixed << setprecision(6) << cal(a, b, c) - 1;
 }
 
 signed main(){
