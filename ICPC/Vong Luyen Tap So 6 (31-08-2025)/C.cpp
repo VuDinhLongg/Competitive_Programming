@@ -22,11 +22,8 @@ const int mxn = 1e6 + 7;
 
 void LonggVuz(){
     int a, b; cin >> a >> b;
-    string x = "";
-    fo(i, 1, a) x += to_string(b);
-    string y = "";
-    fo(i, 1, b) y += to_string(a);
-    cout << min(x, y);
+    if(a > b) swap(a, b);
+    fo(i, 1, b) cout << a;
 }
 
 signed main(){
