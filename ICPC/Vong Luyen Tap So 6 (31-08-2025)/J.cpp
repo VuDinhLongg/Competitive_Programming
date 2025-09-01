@@ -19,7 +19,7 @@ const int mxn = 1e6 + 7;
 double dp[101][101][101];
 
 double cal(int a, int b, int c){
-    if(max({a, b, c}) == 100) return 1.0;
+    if(max({a, b, c}) == 100) return 0;
     double &res = dp[a][b][c];
     if(res) return res;
     int s = a + b + c;
@@ -31,7 +31,7 @@ double cal(int a, int b, int c){
 
 void LonggVuz(){
     int a, b, c; cin >> a >> b >> c;
-    cout << fixed << setprecision(6) << cal(a, b, c) - 1;
+    cout << fixed << setprecision(6) << cal(a, b, c);
 }
 
 signed main(){
