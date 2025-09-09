@@ -33,19 +33,19 @@ void LonggVuz(){
     cin >> n >> m;
     fo(i, 1, n){
         cin >> a[i];
-        xoa(a[i]);
+        if(!del[a[i]]) xoa(a[i]);
     }
     vec<int> res;
     fo(i, 1, m) if(!del[i]){
-        int x = i, ok = 1;
-        for(int j=2; j*j<=x; j++){
-            if(x % j == 0){
-                if(del[j] or del[x / j]){
+        bool ok = 1;
+        for(int j=2; j*j<=i; j++){
+            if(i % j == 0){
+                if(del[j] or del[i / j]){
                     ok = 0; break;
                 }
             }
         }
-        if(ok and !del[x]) res.pub(i);
+        if(ok) res.pub(i);
     }
     cout << len(res), el;
     for(int &i : res) cout << i << ' ';
