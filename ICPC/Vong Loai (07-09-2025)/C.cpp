@@ -18,18 +18,29 @@ const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
 const int mxn = 2e5 + 7;
 
+#define i128 __int128_t
+string value(i128 n){
+    string s = "";
+    bool neg = 0;
+    if(n < 0) neg = 1, n = -n;
+    while(n) s.pub(n % 10 + '0'), n /= 10;
+    reverse(all(s));
+    if(neg) s.insert(begin(s), '-');
+    return s;
+}
+
 int n, a[mxn];
 
 void LonggVuz(){
     cin >> n;
     fo(i, 1, n) cin >> a[i];
     sort(a+1, a+n+1);
-    int res = 0, cur = 0;
+    i128 res = 0, cur = 0;
     fo(i, 1, n){
         res += a[i] * (i - 1) - cur;
         cur += a[i];
     }
-    cout << res;
+    cout << value(res);
 }
 
 signed main(){
