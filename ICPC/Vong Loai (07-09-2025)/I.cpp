@@ -51,7 +51,7 @@ void LonggVuz(){
     cin >> x;
     if(x == 1) out(1);
     int res = oo;
-    fo(fn, 2, 1e5){
+    fo(fn, 2, 168){
         int l = 0, r = x + 1;
         while(r - l > 1){
             int mid = l + r >> 1;
