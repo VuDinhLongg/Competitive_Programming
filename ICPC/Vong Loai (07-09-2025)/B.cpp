@@ -36,7 +36,7 @@ void LonggVuz(){
         xoa(a[i]);
     }
     vec<int> res;
-    fo(i, 1, m){
+    fo(i, 1, m) if(!del[i]){
         int x = i, ok = 1;
         for(int j=2; j*j<=x; j++){
             if(x % j == 0){
