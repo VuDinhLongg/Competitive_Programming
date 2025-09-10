@@ -63,7 +63,7 @@ void LonggVuz(){
     // xu ly cot 2 -> m
     int lastm = m + 1;
     if(!hang[1].empty()) lastm = hang[1][0];
-    vec<char> mark(m + 5);
+    vec<char> mark(last);
     fo(c, 2, lastm - 1){
         for(int &x : cot[c]) if(x < last and mark[x] == 0){
             mark[x] = 1;
