@@ -66,7 +66,7 @@ void LonggVuz(){
     cout << res, el;
     fo(i, 1, n - 1){
         int sub = a[i] - 1;
-        int add= n - a[i];
+        int add = n - a[i];
         res = res - sub + add;
         cout << res, el;
     }
