@@ -74,7 +74,7 @@ void LonggVuz(){
 
 signed main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
-    // freopen("longgvuz.inp", "r", stdin); freopen("longgvuz.out", "w", stdout);
+	
     signed orz = 1; if(false) cin >> orz;
     while(orz --> 0){
         LonggVuz();
