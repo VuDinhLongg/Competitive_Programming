@@ -62,16 +62,13 @@ void LonggVuz(){
     fo(i, 1, n){
         res += f.getn(a[i] + 1);
         f.upd1(a[i], 1);
-        f.updn(a[i], 1);
     }
     cout << res, el;
     fo(i, 1, n - 1){
-        int sub = f.get1(a[i] - 1);
-        debug(a[i], sub);
-        res -= sub;
-        res += n - a[i];
+        int sub = a[i] - 1;
+        int add= n - a[i];
+        res = res - sub + add;
         cout << res, el;
-        f.upd1(a[i], -1);
     }
 }
 
