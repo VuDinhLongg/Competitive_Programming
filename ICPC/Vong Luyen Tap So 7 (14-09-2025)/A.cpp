@@ -23,28 +23,59 @@ using namespace std;
 #define int int64_t
 
 const int mod = 1e9 + 7;
-const int oo = 1e18 + 7;
-const int mxn = 1e5 + 7;
+const int mxn = 2e3 + 7;
 
-int n, a[mxn], b[mxn], c[mxn], d[mxn];
+vec<int> base; int bs = 167;
+
+void pre(int n){
+    base.resize(n + 5, 1);
+    fo(i, 1, n) base[i] = base[i - 1] * bs % mod;
+}
+
+struct Hash{
+    vec<int> h;
+    Hash(string &str){
+        int n = len(str);
+        str.insert(begin(str), ' ');
+        h.resize(n + 5);
+        fo(i, 1, n) h[i] = (h[i - 1] * bs + str[i] - 'a' + 1) % mod;
+    }
+    int get(int l, int r){
+        return (h[r] - h[l - 1] * base[r - l + 1] % mod + mod) % mod;
+    }
+};
+
+int n, k;
+string a;
 
 void LonggVuz(){
-    cin >> n;
-    fo(i, 1, n) cin >> a[i];
-    fo(i, 1, n) cin >> b[i];
-    if(a[1] != b[1] or a[n] != b[n]) out("No");
-    fo(i, 1, n - 1) c[i] = abs(a[i] - a[i + 1]);
-    fo(i, 1, n - 1) d[i] = abs(b[i] - b[i + 1]);
-    sort(c+1, c+n+1);
-    sort(d+1, d+n+1);
-    fo(i, 1, n - 1) if(c[i] != d[i]) out("No");
-    cout << "Yes";
+    cin >> a >> k;
+    n = len(a);
+    Hash h(a);
+    set<int> s;
+    fo(i, 1, n - k * 2 + 1){
+        stack<int> st;
+        int mx = 0;
+        fo(j, i, n){
+            if(a[j] == '('){
+                st.push(len(st) + 1);
+            }else{
+                if(!st.empty()){
+                    mx = max(mx, st.top());
+                    st.pop();
+                }else break;
+            }
+            if(mx > k) break;
+            if(mx == k and st.empty()) s.insert(h.get(i, j));
+        }
+    }
+    cout << len(s);
 }
 
 signed main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
-    
-    signed orz = 1; if(false) cin >> orz;
+    pre(mxn);
+    signed orz = 1; if(1) cin >> orz;
     while(orz --> 0){
         LonggVuz();
         if(orz) el;
