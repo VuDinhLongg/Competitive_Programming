@@ -25,7 +25,7 @@ using namespace std;
 const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
 const int mxn = 1e6 + 7;
-const float eps = 1e-6;
+const float eps = 1e-9;
 
 float dis(float a, float b, float c, float d){
     return sqrtl((a - c) * (a - c) + (b - d) * (b - d));
@@ -40,6 +40,9 @@ void LonggVuz(){
     float p = canh1 + canh2 + canh3; p /= 2;
     float s = sqrtl(p * (p - canh1) * (p - canh2) * (p - canh3));
     debug(canh1, canh2, canh3);
+    debug(abs(canh1 * canh2 - s * 2.0));
+    debug(abs(canh1 * canh3 - s * 2.0));
+    debug(abs(canh3 * canh2 - s * 2.0));
     if(abs(canh1 * canh2 - s * 2.0) <= eps) out("Yes");
     if(abs(canh1 * canh3 - s * 2.0) <= eps) out("Yes");
     if(abs(canh3 * canh2 - s * 2.0) <= eps) out("Yes");
