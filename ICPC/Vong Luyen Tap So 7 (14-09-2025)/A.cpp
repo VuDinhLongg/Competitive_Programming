@@ -23,7 +23,8 @@ using namespace std;
 #define int int64_t
 
 const int mod = 1e9 + 7;
-const int mxn = 2e3 + 7;
+const int oo = 1e18 + 7;
+const int mxn = 1e6 + 7;
 
 vec<int> base; int bs = 167;
 
@@ -45,28 +46,28 @@ struct Hash{
     }
 };
 
-int n, k;
-string a;
-
 void LonggVuz(){
-    cin >> a >> k;
-    n = len(a);
+    string a; cin >> a;
+    int k; cin >> k;
+    int n = len(a);
     Hash h(a);
     set<int> s;
-    fo(i, 1, n - k * 2 + 1){
+    fo(i, 1, n){
         stack<int> st;
-        int mx = 0;
+        int level = 0;
         fo(j, i, n){
             if(a[j] == '('){
                 st.push(len(st) + 1);
             }else{
-                if(!st.empty()){
-                    mx = max(mx, st.top());
-                    st.pop();
-                }else break;
+                if(st.empty()) break;;
+                level = max(level, st.top());
+                st.pop();
             }
-            if(mx > k) break;
-            if(mx == k and st.empty()) s.insert(h.get(i, j));
+            if(level > k) break;
+            if(level == k and st.empty()){
+                debug(i, j, h.get(i, j));
+                s.insert(h.get(i, j));
+            }
         }
     }
     cout << len(s);
@@ -74,7 +75,7 @@ void LonggVuz(){
 
 signed main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
-    pre(mxn);
+    pre(1e3);
     signed orz = 1; if(1) cin >> orz;
     while(orz --> 0){
         LonggVuz();
