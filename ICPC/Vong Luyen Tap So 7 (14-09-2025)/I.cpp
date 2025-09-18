@@ -25,7 +25,7 @@ using namespace std;
 const int mod = 1e9 + 7;
 const int oo = 1e18 + 7;
 const int mxn = 1e6 + 7;
-const float eps = 1e-9;
+const float eps = 1e-6;
 
 float dis(float a, float b, float c, float d){
     return sqrtl((a - c) * (a - c) + (b - d) * (b - d));
