@@ -57,10 +57,7 @@ void LonggVuz(){
         ke[x].pub(y);
         ke[y].pub(x);
     }
-    fo(i, 1, n){
-        while(!st.empty()) st.pop();
-        dfs(i);
-    }
+    fo(i, 1, n) dfs(i);
     cout << res;
 }
 
