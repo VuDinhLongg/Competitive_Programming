@@ -43,7 +43,7 @@ inline void LonggVuz(){
         fo(mask, 1, 31){
             int cur = 0;
             fo(j, 0, 4) if(mask >> j & 1){
-                cur = ((i128)cur * base + (a[i][j] + 1000001)) % mod;
+                cur = ((i128)cur * base + a[i][j]) % mod;
             }
             if(__builtin_popcount(mask) & 1){
                 res += mp[cur];
@@ -54,7 +54,7 @@ inline void LonggVuz(){
         fo(mask, 1, 31){
             int cur = 0;
             fo(j, 0, 4) if(mask >> j & 1){
-                cur = ((i128)cur * base + (a[i][j] + 1000001)) % mod;
+                cur = ((i128)cur * base + a[i][j]) % mod;
             }
             ++mp[cur];
         }
