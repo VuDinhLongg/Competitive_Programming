@@ -1,17 +1,25 @@
 // LonggVuz
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+
+#ifdef LonggVuz
+#include <LonggVuz.h>
+#else
+#define debug(...)
+#endif
+
 #define el cout << '\n'
 #define inc(i, a, b, c) for(int32_t i=a; i<=b; i+=c)
 #define dec(i, a, b, c) for(int32_t i=a; i>=b; i-=c)
 #define fo(i, a, b) for(int32_t i=a; i<=b; i++)
 #define fd(i, a, b) for(int32_t i=a; i>=b; i--)
-#define out(x) return void(cout << (x));
+#define out(x) return void(cout << (x))
 #define all(x) begin(x), end(x)
 #define len(x) (int)(x).size()
 #define vec vector
 #define pub push_back
 #define pob pop_back
+#define dub double
 #define int int64_t
 
 const int mod = 1e9 + 7;
@@ -19,44 +27,51 @@ const int oo = 1e18 + 7;
 const int mxn = 1e6 + 7;
 
 struct fenwick{
-    int n; vec<vec<int>> f;
+    int n; vec<int> f, g;
     fenwick(int _n){
-        n = _n; f.resize(n + 5, vec<int>(5));
+        n = _n; f.resize(n + 5); g.resize(n + 5);
     }
-    int sum(int a, int b){ return a + b; }
-    void upd(int x, int y, int v){
-        for(; x >= 1 ; x -= x & -x) f[x][y] = sum(f[x][y], v);
+    void upd1(int x, int v){
+        for(; x >= 1 ; x -= x & -x) g[x] += v;
     }
-    int get(int x, int y){
+    void updn(int x, int v){
+        for(; x <= n ; x += x & -x) f[x] += v;
+    }
+    int get1(int x){
         int s = 0;
-        for(; x <= n ; x += x & -x) s = sum(s, f[x][y]);
+        for(; x >= 1 ; x -= x & -x) s += f[x];
+        return s;
+    }
+    int getn(int x){
+        int s = 0;
+        for(; x <= n ; x += x & -x) s += g[x];
         return s;
     }
 };
 
-void LonggVuz(){
+inline void LonggVuz(){
     int n; cin >> n;
     int a[n+5];
     fo(i, 1, n) cin >> a[i];
-    fenwick f(n);
+    int res = 0;
+    fenwick f1(n), f2(n);
     fo(i, 1, n){
-        f.upd(a[i], 1, 1);
-        fo(j, 1, 2){
-            int g = f.get(a[i] + 1, j);
-            f.upd(a[i], j + 1, g);
-        }
+        res += f2.getn(a[i] + 1);
+        int g = f1.getn(a[i] + 1);
+        f2.upd1(a[i], g);
+        f1.upd1(a[i], 1);
     }
-    cout << f.get(1, 3);
+    cout << res;
 }
 
 signed main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
     
-    signed orz = 1; cin >> orz;
+    signed orz = 1; if(1) cin >> orz;
     while(orz --> 0){
         LonggVuz();
         if(orz) el;
     }
     
-    cerr << "Execution Time: " << 0.001 * clock() << "s\n";
+    cerr << "Execution Time: " << clock() << "ms\n";
 }
