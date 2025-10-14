@@ -50,6 +50,7 @@ vec<pii> canh;
 vec<int> ke[mxn];
 
 void dfs1(int u, int p = 0){
+    dp[u][0] = s[u];
     for(int &v : ke[u]) if(v != p){
         dfs1(v, u);
         fo(i, 0, 0){
@@ -64,16 +65,6 @@ void dfs1(int u, int p = 0){
                 dp[u][2] = dp[v][i] + s[u];
             }
         }
-    }
-    if(s[u] > dp[u][0]){
-        dp[u][2] = dp[u][1];
-        dp[u][1] = dp[u][0];
-        dp[u][0] = s[u];
-    }else if(s[u] > dp[u][1]){
-        dp[u][2] = dp[u][1];
-        dp[u][1] = s[u];
-    }else if(s[u] > dp[u][2]){
-        dp[u][2] = s[u];
     }
 }
 
@@ -115,7 +106,7 @@ int solve(int p){
         ans[u] = -oo;
         if(dp[u][0] > -oo and dp[u][1] > -oo and dp[u][2] > -oo)
             ans[u] = max(ans[u], dp[u][0] + dp[u][1] + dp[u][2]);
-        if(dp[u][0] > -oo and dp[u][1] > -oo and up[u] > -oo and up[u] != dp[u][0] and up[u] != dp[u][1])
+        if(dp[u][0] > -oo and dp[u][1] > -oo and up[u] > -oo and up[u] != s[u])
             ans[u] = max(ans[u], dp[u][0] + dp[u][1] + up[u]);
         if(ans[u] == -oo) continue;
         ans[u] = ans[u] * 2 - s[u] * 3;
