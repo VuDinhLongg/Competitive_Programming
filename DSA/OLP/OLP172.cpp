@@ -32,7 +32,7 @@ const int mxn = 1e5 + 7;
 #define fi first
 #define se second
 
-int n, sz[mxn], dp[mxn], cnt[mxn];
+int n, sz[mxn], dp[mxn];
 vec<pii> ke[mxn];
 
 int check(int w){
