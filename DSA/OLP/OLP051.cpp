@@ -6,6 +6,7 @@ using namespace std;
 #include <LonggVuz.h>
 #else
 #define debug(...)
+#define print(...)
 #endif
 
 template<class X, class Y> bool maxi(X &a, const Y &b){ return b > a ? a = b, 1 : 0; }
@@ -134,10 +135,10 @@ inline void LonggVuz(){
 signed main(){
     cin.tie(nullptr) -> sync_with_stdio(false);
     
-    signed orz = 1; if(1) cin >> orz;
-    while(orz --> 0){
+    signed hehe = 1; if(1) cin >> hehe;
+    for(signed test = 1; test <= hehe; ++test){
+        print(test);
         LonggVuz();
-        if(orz) el;
     }
     
     cerr << "Execution Time: " << clock() << "ms\n";
