@@ -1,73 +1,16 @@
-<div align="center">
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=roboto&weight=5000&duration=2000&pause=2000&color=FF0000&multiline=true&repeat=true&width=500&lines=Ch%C3%A0o+c%C3%A1c+b%E1%BA%A1n%2C+m%C3%ACnh+l%C3%A0+Vũ+Đình+Long+:D)](https://git.io/typing-svg)
+---
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=roboto&weight=4000&duration=2000&pause=2000&color=4DF740FF&multiline=true&repeat=true&width=500&lines=From+a+PTITer+-+B23DCAT175+with+Love+<3)](https://git.io/typing-svg)
+---
 
-# 💻 Competitive Programming
+👋 Xin chào, mình là **Vũ Đình Long** — `LonggVuz`, sinh viên **PTIT** và yêu thích lập trình thi đấu.
 
-### Accepted Solutions • Algorithms • ICPC Journey
-
-[![C++](https://img.shields.io/badge/C%2B%2B-17%20%7C%2020-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)](https://isocpp.org/)
-[![PTIT](https://img.shields.io/badge/PTIT-Student-E31837?style=for-the-badge&logo=academia&logoColor=white)](https://ptit.edu.vn/)
-[![ICPC](https://img.shields.io/badge/ICPC-Training-F107A3?style=for-the-badge&logo=codeforces&logoColor=white)](https://icpc.global/)
-
-</div>
+Repository này lưu lại các lời giải cho các bài tập thuật toán trong quá trình luyện tập của mình trên nhiều nền tảng khác nhau.
 
 ---
 
-## 👋 About
+--> [Facebook](https://www.facebook.com/longgvuz/) <-- 
 
-Xin chào, mình là **Vũ Đình Long** — `LonggVuz`, sinh viên **PTIT** và yêu thích lập trình thi đấu.
+--> [Codeforces](https://codeforces.com/profile/LonggVuz) <-- 
 
-Repository này lưu lại các lời giải, bài tập thuật toán và quá trình luyện tập của mình trên nhiều nền tảng khác nhau.
-
-> **Think clearly. Code carefully. Never stop learning.**
-
----
-
-## 📂 Nội dung chính
-
-| Thư mục | Nội dung |
-|---|---|
-| [DSA](./DSA) | Cấu trúc dữ liệu, giải thuật và bài tập thực hành |
-| [ICPC](./ICPC) | Các vòng luyện tập, vòng loại và vòng chung kết ICPC |
-
----
-
-## 🧩 Chủ đề
-
-- Sorting, Searching, Greedy
-- Dynamic Programming
-- Graph Theory
-- Number Theory
-- Data Structures
-- String Algorithms
-- Computational Geometry
-
----
-
-## 🛠️ Công cụ
-
-- **C++17 / C++20**
-- **Python 3**
-- **Git & GitHub**
-- **Sublime Text / VS Code**
-
----
-
-## 🌐 Profiles
-
-<div align="center">
-
-[![GitHub](https://img.shields.io/badge/GitHub-VuDinhLongg-181717?style=for-the-badge&logo=github)](https://github.com/VuDinhLongg)
-[![Codeforces](https://img.shields.io/badge/Codeforces-LonggVuz-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white)](https://codeforces.com/profile/LonggVuz)
-[![VNOJ](https://img.shields.io/badge/VNOJ-vudinhlong-2EA44F?style=for-the-badge)](https://oj.vnoi.info/user/vudinhlong)
-
-</div>
-
----
-
-<div align="center">
-
-### ⭐ From a PTITer with Passion and Love ❤️
-
-`while (!accepted) { think(); code(); debug(); learn(); }`
-
-</div>
+--> [VNOJ](https://oj.vnoi.info/user/vudinhlong) <--
