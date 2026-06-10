@@ -9,8 +9,8 @@ Repository này lưu lại các lời giải cho các bài tập thuật toán t
 
 ---
 
---> [Facebook](https://www.facebook.com/longgvuz/) <-- 
+# $\rightarrow$ [**Facebook**](https://www.facebook.com/longgvuz/) $\leftarrow$
 
---> [Codeforces](https://codeforces.com/profile/LonggVuz) <-- 
+# $\rightarrow$ [Codeforces](https://codeforces.com/profile/LonggVuz) $\leftarrow$
 
---> [VNOJ](https://oj.vnoi.info/user/vudinhlong) <--
+# $\rightarrow$ [VNOJ](https://oj.vnoi.info/user/vudinhlong) $\leftarrow$
