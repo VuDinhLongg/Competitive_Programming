@@ -26,13 +26,16 @@ using namespace std;
 
 
 inline void LonggVuz(){
-    
+    int a, b, c; cin >> a >> b >> c;
+    if(c > 0) out("CURVE UP");
+    if(c == 0) out("NO CURVE");
+    if(c < 0) out("CURVE DOWN");
 }
 
 signed main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
     
-    signed o = 1; if(false) cin >> o;
+    signed o = 1; if(1) cin >> o;
     rep(i, o) orz(i), LonggVuz();
     
     cerr << "[exec time = `" << clock() << "ms`]";

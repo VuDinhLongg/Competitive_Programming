@@ -23,16 +23,40 @@ using namespace std;
 #define int long long
 #define mxn 1'000'007
 
-
+string k = "Kiaya";
+string z = "Zeros";
 
 inline void LonggVuz(){
-    
+    int n, x, y, a, b; cin >> n >> x >> y >> a >> b;
+    if(a == b){
+        if(x + 1 == y){
+            out(z);
+        }else{
+            if(x + a >= y - 1) out(k);
+            int d = y - x - 1;
+            if(d % (a + 1)) out(k);
+            out(z);
+        }
+    }else if(a > b){
+        int d = y - x - 1;
+        if(d == 0){
+            if(x - (b + 1) >= 1) out(k);
+            out(z);
+        }
+        out(k);
+    }else{
+        int d = y - x - 1;
+        if(d == 0) out(z);
+        if(x + a < y - 1) out(z);
+        if(y + a + 1 <= n) out(z);
+        out(k);
+    }
 }
 
 signed main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
     
-    signed o = 1; if(false) cin >> o;
+    signed o = 1; if(1) cin >> o;
     rep(i, o) orz(i), LonggVuz();
     
     cerr << "[exec time = `" << clock() << "ms`]";

@@ -26,13 +26,25 @@ using namespace std;
 
 
 inline void LonggVuz(){
-    
+    int n; cin >> n;
+    string a, b; cin >> a >> b;
+    int fa = 0, fb = 0;
+    fo(i, 0, n - 1){
+    	if(i & 1){
+    		fa += a[i] == '1';
+    		fb += b[i] == '1';
+    	}else{
+    		fa -= a[i] == '1';
+    		fb -= b[i] == '1';
+    	}
+    }
+    cout << (fa == fb ? "YES" : "NO"), el;
 }
 
 signed main(){
     ios::sync_with_stdio(false); cin.tie(nullptr);
     
-    signed o = 1; if(false) cin >> o;
+    signed o = 1; if(1) cin >> o;
     rep(i, o) orz(i), LonggVuz();
     
     cerr << "[exec time = `" << clock() << "ms`]";

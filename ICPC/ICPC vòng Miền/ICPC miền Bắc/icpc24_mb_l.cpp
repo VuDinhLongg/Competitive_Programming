@@ -23,10 +23,16 @@ using namespace std;
 #define int long long
 #define mxn 1'000'007
 
-
+int n, a[mxn], d[mxn], res;
 
 inline void LonggVuz(){
-    
+    cin >> n;
+    fo(i, 1, n) cin >> a[i];
+    fo(i, 1, n){
+        res += d[a[i]];
+        ++d[a[i]];
+    }
+    cout << res;
 }
 
 signed main(){
