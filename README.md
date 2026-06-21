@@ -5,7 +5,7 @@
 
 👋 Xin chào, mình là **Vũ Đình Long** — `LonggVuz`, sinh viên **PTIT** và yêu thích lập trình thi đấu.
 
-Repository này lưu lại các lời giải cho các bài tập thuật toán trong quá trình luyện tập của mình trên nhiều nền tảng khác nhau.
+Tại đây, mình lưu lại các lời giải cho các bài tập thuật toán trong quá trình luyện tập của mình trên nhiều nền tảng khác nhau.
 
 ---
 
