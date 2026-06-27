@@ -35,7 +35,7 @@ void update(int id, int l, int r, int i, int p){
 	int m = l + r >> 1;
 	if(i <= m) update(id * 2, l, m, i, p);
 	else update(id * 2 + 1, m + 1, r, i, p);
-	seg_idx[id] = (a[seg_idx[id * 2]] < a[seg_idx[id * 2 + 1]] ? seg_idx[id * 2] : seg_idx[id * 2 + 1]);
+	seg_idx[id] = (a[seg_idx[id * 2]] <= a[seg_idx[id * 2 + 1]] ? seg_idx[id * 2] : seg_idx[id * 2 + 1]);
 	seg_sum[id] = seg_sum[id * 2] + seg_sum[id * 2 + 1];
 }
 
@@ -45,7 +45,7 @@ int get_idx(int id, int l, int r, int u, int v){
 	int m = l + r >> 1;
 	int idx_l = get_idx(id * 2, l, m, u, v);
 	int idx_r = get_idx(id * 2 + 1, m + 1, r, u, v);
-	return (a[idx_l] < a[idx_r] ? idx_l : idx_r);
+	return (a[idx_l] <= a[idx_r] ? idx_l : idx_r);
 }
 
 int get_sum(int id, int l, int r, int u, int v){
@@ -71,7 +71,6 @@ inline void LonggVuz(){
     		cur %= n;
     	}else if(t == 2){
     		int l, r, p; cin >> l >> r >> p;
-    		if(l > r) swap(l, r);
     		l -= cur; if(l <= 0) l += n;
     		r -= cur; if(r <= 0) r += n;
     		if(l <= r){
@@ -80,14 +79,14 @@ inline void LonggVuz(){
 	    	}else{
 	    		int idx1 = get_idx(1, 1, n, l, n);
 	    		int idx2 = get_idx(1, 1, n, 1, r);
-	    		int idx = (a[idx1] < a[idx2] ? idx1 : idx2);
+	    		int idx = (a[idx1] <= a[idx2] ? idx1 : idx2);
 	    		update(1, 1, n, idx, p);
 	    	}
     	}else{
     		int l, r; cin >> l >> r;
-    		if(l > r) swap(l, r);
     		l -= cur; if(l <= 0) l += n;
     		r -= cur; if(r <= 0) r += n;
+    		dbg(l, r);
     		if(l <= r){
     			cout << get_sum(1, 1, n, l, r), el;
     		}else{
