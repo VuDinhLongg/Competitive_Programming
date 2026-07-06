@@ -1,4 +1,3 @@
-// Accepted on Subtask 1 + 2 (80%)
 /*======================
    Author : @LonggVuz
 ======================*/
@@ -28,47 +27,45 @@ const int mod = 1e9 + 7;
 
 int n, q, a[mxn];
 vector<int> ke[mxn];
-int h[mxn], dad[mxn][20], dp[mxn][20];
-
-void dfs(int u, int p = 0){
-	for(int &v : ke[u]) if(v != p){
-		h[v] = h[u] + 1;
-		dad[v][0] = u;
-		dp[v][0] = a[u];
-		fo(k, 1, 18){
-			dp[v][k] = max(dp[v][k - 1], dp[dad[v][k - 1]][k - 1]);
-			dad[v][k] = dad[dad[v][k - 1]][k - 1];
-		}
-		dfs(v, u);
-	}
-}
-
-pair<int, int> lca(int u, int v){
-	if(h[u] < h[v]) swap(u, v);
-	int res = max(a[u], a[v]);
-	fd(i, 18, 0) if((h[u] - h[v]) >> i & 1){
-		maxi(res, dp[u][i]);
-		u = dad[u][i];
-	}
-	if(u == v) return {res, u};
-	fd(i, 18, 0) if(dad[u][i] != dad[v][i]){
-		maxi(res, max(dp[u][i], dp[v][i]));
-		u = dad[u][i];
-		v = dad[v][i];
-	}
-	maxi(res, dp[u][0]);
-	return {res, dad[u][0]};
-}
-
-int dist(int u, int v){
-	return h[u] + h[v] - h[lca(u, v).second] * 2;
-}
 
 namespace sub1{
 	bool check(){
 		return n <= 200;
 	}
+	int h[mxn], dad[mxn][20], dp[mxn][20];
+	void dfs(int u, int p = 0){
+		for(int &v : ke[u]) if(v != p){
+			h[v] = h[u] + 1;
+			dad[v][0] = u;
+			dp[v][0] = a[u];
+			fo(k, 1, 18){
+				dp[v][k] = max(dp[v][k - 1], dp[dad[v][k - 1]][k - 1]);
+				dad[v][k] = dad[dad[v][k - 1]][k - 1];
+			}
+			dfs(v, u);
+		}
+	}
+	pair<int, int> lca(int u, int v){
+		if(h[u] < h[v]) swap(u, v);
+		int res = max(a[u], a[v]);
+		fd(i, 18, 0) if((h[u] - h[v]) >> i & 1){
+			maxi(res, dp[u][i]);
+			u = dad[u][i];
+		}
+		if(u == v) return {res, u};
+		fd(i, 18, 0) if(dad[u][i] != dad[v][i]){
+			maxi(res, max(dp[u][i], dp[v][i]));
+			u = dad[u][i];
+			v = dad[v][i];
+		}
+		maxi(res, dp[u][0]);
+		return {res, dad[u][0]};
+	}
+	int dist(int u, int v){
+		return h[u] + h[v] - h[lca(u, v).second] * 2;
+	}
 	void solve(){
+		dbg("sub1");
 		dfs(1);
 		int res = 0;
 		fo(x, 1, n) fo(y, x + 1, n) fo(z, y + 1, n){
@@ -115,6 +112,7 @@ namespace sub2{
 		++sz[u];
 	}
 	void solve(){
+		dbg("sub2");
 		dfs(1);
 		res *= (n - 2);
 		res %= mod;
@@ -138,8 +136,41 @@ namespace sub3{
 	bool check(){
 		return 1;
 	}
+	int vis[mxn], sz[mxn], cnt, add, aim;
+	void dfs1(int u, int p = 0){
+		++cnt;
+		for(int &v : ke[u]) if(v != p and a[v] <= aim){
+			dfs1(v, u);
+		}
+	}
+	void dfs2(int u, int p = 0){
+		vis[u] = 1;
+		for(int &v : ke[u]) if(v != p and !vis[v] and a[v] <= aim){
+			dfs2(v, u);
+			add += (cnt - sz[v]) * sz[v];
+			add %= mod;
+			sz[u] += sz[v];
+		}
+		++sz[u];
+	}
+	int calc(int _aim){
+		aim = _aim;
+		int res = 0;
+		fo(u, 1, n) vis[u] = sz[u] = 0;
+		fo(u, 1, n) if(!vis[u] and a[u] <= aim){
+			cnt = 0;
+			dfs1(u);
+			add = 0;
+			dfs2(u);
+			res = (res + add * (cnt - 2)) % mod;
+		}
+		return res;
+	}
 	void solve(){
-		
+		dbg("sub3");
+		int res = calc(q) - calc(q - 1);
+		res = (res + mod) % mod;
+		cout << res;
 	}
 }
 
