@@ -1,4 +1,3 @@
-// Accepted on Subtask 1 + 2 (60%)
 /*======================
    Author : @LonggVuz
 ======================*/
@@ -49,14 +48,14 @@ namespace sub1{
 
 namespace sub2{
 	bool check(){
-		return p == 2;
+		return p == 2 or p == 5;
 	}
 	int cnt[mxn], dp[mxn];
 	void solve(){
 		fo(i, 1, n){
 			cnt[i] = cnt[i - 1];
 			dp[i] = dp[i - 1];
-			if((s[i] - '0') % 2 == 0){
+			if((s[i] - '0') % p == 0){
 				++cnt[i];
 				dp[i] += i;
 			}
@@ -72,10 +71,62 @@ namespace sub2{
 
 namespace sub3{
 	bool check(){
-		
+		return 1;
+	}
+	struct node{
+		int l, r, id;
+	};
+	int ten[mxn], suf[mxn], cnt[mxn], ans[mxn], res, sz = 367;
+	node tv[mxn];
+	void zip(vector<int> &a, int l, int r){
+		vector<int> v; fo(i, l, r) v.push_back(a[i]); sort(all(v));
+		v.erase(unique(all(v)), end(v));
+		fo(i, l, r) a[i] = lower_bound(all(v), a[i]) - begin(v) + 1;
+	}
+	
+	void zip(int a[], int l, int r){
+		vector<int> v; fo(i, l, r) v.push_back(a[i]); sort(all(v));
+		v.erase(unique(all(v)), end(v));
+		fo(i, l, r) a[i] = lower_bound(all(v), a[i]) - begin(v) + 1;
+	}
+	void add(int x){
+		res += cnt[x];
+		++cnt[x];
+	}
+	void del(int x){
+		--cnt[x];
+		res -= cnt[x];
 	}
 	void solve(){
-		
+		ten[0] = 1;
+		fo(i, 1, n) ten[i] = ten[i - 1] * 10 % p;
+		fd(i, n, 1){
+			int d = s[i] - '0';
+			suf[i] = (d * ten[n - i] + suf[i + 1]) % p;
+		}
+		zip(suf, 1, n + 1);
+		fo(i, 1, q){
+			cin >> tv[i].l >> tv[i].r;
+			++tv[i].r;
+			tv[i].id = i;
+		}
+		sort(tv+1, tv+q+1, [&](node &x, node &y){
+			if(x.l / sz == y.l / sz){
+				if((x.l / sz) & 1) return x.r < y.r;
+				return x.r > y.r;
+			}
+			return x.l < y.l;
+		});
+		int L = 1, R = 0;
+		fo(i, 1, q){
+			auto &[l, r, id] = tv[i];
+			while(L > l) add(suf[--L]);
+			while(R < r) add(suf[++R]);
+			while(L < l) del(suf[L++]);
+			while(R > r) del(suf[R--]);
+			ans[id] = res;
+		}
+		fo(i, 1, q) cout << ans[i], el;
 	}
 }
 
