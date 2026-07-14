@@ -1,89 +1,86 @@
-/*
-    vudinhlong 9:42:51 sa, 18/12/2024
-    => Old style, update later... :D
-*/
-
-// LonggVuz
-#include<bits/stdc++.h>
+/*======================
+   Author : @LonggVuz
+======================*/
+#include <bits/stdc++.h>
 using namespace std;
-// ☞ Think twice, code once ☜
-void End(){
-    cerr << "=> Great Job! Execution Time: ";
-    cerr << (0.001 * clock()) << "s\n";
-}
-#define Sonic() cin.tie(0) -> sync_with_stdio(0)
-#define out(x) return cout << x, void()
-#define fix(x) fixed << setprecision(x)
-#define all(x) x.begin(), x.end()
-#define len(x) (int)x.size()
-#define pb push_back
-#define is insert
-#define el '\n'
-#define ld long double
-#define int int64_t
 
-const int mod = 1e9 + 7;
-const int oo = 1e18 + 7;
-const int mxn = 2e6 + 7;
+#ifdef LOCAL
+#include <debug.h>
+#else
+#define dbg(...) 1608
+#define orz(...) 2005
+#endif
+
+#define el cout << '\n'
+#define all(x) begin(x), end(x)
+#define len(x) (int)(x).size()
+#define out(x) return void(cout << (x) << '\n')
+#define rep(i, n) for(int32_t i=0; i<n; ++i)
+#define fo(i, a, b) for(int32_t i=a; i<=b; ++i)
+#define fd(i, a, b) for(int32_t i=a; i>=b; --i)
+#define maxi(a, b) ((a) < (b) ? (a = b, 1) : 0)
+#define mini(a, b) ((a) > (b) ? (a = b, 1) : 0)
+#define int long long
+#define mxn 2'000'007
 
 int n, k;
-bool nt[mxn];
-vector<int> v;
+bool nto[mxn];
+vector<int> val;
 
-void pre(){
-	int c = sqrtl(1e6);
-	for(int i=2; i<=c; i++)
-		if(!nt[i])
-			for(int j=i*i; j<=1e6; j+=i) nt[j] = 1;
-
-	v.pb(2);
-	for(int i=3; i<=1e6; i+=2) if(!nt[i]) v.pb(i);
-}
-
-int mu(int a, int b){
-	int res = 1;
-	while(b){
-		if(b % 2) res *= a;
-		b /= 2;
-		a *= a;
-	}return res;
-}
-
-int cal(int t1, int t2, int t3){
-	int res = 0;
-	for(int i=0; i+2<len(v); i++){
-		int x = mu(v[i], t1);
-		int y = mu(v[i + 1], t2);
-		int z = mu(v[i + 2], t3);
-		if(x > n / y / z) break;
-		res = x * y * z;
-	}return res;
-}
-
-void LonggVuz(){
-	pre();
-	cin >> n >> k;
-	// (t1 + 1) * (t2 + 1) * (t3 + 1) = k
-	int res = -1;
-	for(int i=2; i<=k; i++){
-		for(int j=2; j<=k and i * j * 2 <= k; j++){
-			if(k % (i * j) == 0){
-				int t = k / (i * j);
-				res = max(res, cal(i - 1, j - 1, t - 1));
+int calc(int t1, int t2, int t3){
+	--t1; --t2; --t3;
+	if(!t1 or !t2 or !t3) return 0;
+	fd(i, len(val) - 3, 0){
+		int p1 = val[i];
+		int p2 = val[i + 1];
+		int p3 = val[i + 2];
+		int res = 1, ok = 1;
+		rep(_, t1){
+			if(res > n / p1){
+				ok = 0; break;
 			}
+			res *= p1;
 		}
+		rep(_, t2){
+			if(res > n / p2){
+				ok = 0; break;
+			}
+			res *= p2;
+		}
+		rep(_, t3){
+			if(res > n / p3){
+				ok = 0; break;
+			}
+			res *= p3;
+		}
+		if(ok) return res;
 	}
+	return 0;
+}
+
+inline void LonggVuz(){
+	fo(i, 2, 2e6) nto[i] = 1;
+	fo(i, 2, 2e3) if(nto[i]){
+		for(int j=i*i; j<=2e6; j+=i) nto[j] = 0;
+	}
+	fo(i, 2, 2e6) if(nto[i]) val.push_back(i);
+
+	cin >> n >> k;
+	int res = 0;
+	fo(t1, 2, k) fo(t2, 2, k) if(t1 * t2 <= k and k % (t1 * t2) == 0){
+		int t3 = k / (t1 * t2);
+		int ans = calc(t1, t2, t3);
+		maxi(res, ans);
+	}
+	assert(res <= n);
 	cout << res;
 }
 
 signed main(){
-	Sonic();
+	ios::sync_with_stdio(false); cin.tie(nullptr);
 	
-	signed icpc = 1;
-	//cin >> icpc;
-	for(signed i=1; i<=icpc; i++){
-		LonggVuz();
-	}
+	signed o = 1; if(false) cin >> o;
+	rep(x, o) orz(x), LonggVuz();
 	
-	End();
+	cerr << "[exec time = `" << clock() << "ms`]";
 }
