@@ -21,35 +21,13 @@ template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 
 #define all(x) begin(x), end(x)
 #define len(x) (int)(x).size()
 #define int long long
-#define mxn 200'007
+#define mxn 1'000'007
 
-int n, a[mxn], dp[2][mxn], tr[2][mxn], ans[mxn];
+
 
 inline void LonggVuz(){
-	cin >> n;
-	fo(i, 1, n) cin >> a[i];
-	dp[0][1] = a[1];
-	dp[1][1] = 0;
-	int x = 0, y = 1;
-	fo(i, 2, n){
-		dp[0][i] = dp[1][x] + a[i];
-		tr[0][i] = x;
-		dp[1][i] = dp[0][y] - a[i];
-		tr[1][i] = y;
-		if(dp[0][i] > dp[0][y]) y = i;
-		if(dp[1][i] > dp[1][x]) x = i;
-	}
-	fo(i, 1, n) dbg(i, dp[0][i], dp[1][i]);
-	int res = 0;
-	fo(i, 1, n) if(dp[1][i] > dp[1][res]) res = i;
-	dbg(res);
-	int o = 1;
-	while(res){
-		ans[res] = 1;
-		res = tr[o][res];
-		o ^= 1;
-	}
-	fo(i, 1, n) cout << ans[i] << ' ';
+	string s; cin >> s;
+	for(char &c : s) if(c != '.') cout << c;
 }
 
 signed main(){

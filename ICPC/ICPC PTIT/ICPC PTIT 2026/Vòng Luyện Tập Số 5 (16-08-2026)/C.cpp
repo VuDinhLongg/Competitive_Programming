@@ -21,35 +21,34 @@ template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 
 #define all(x) begin(x), end(x)
 #define len(x) (int)(x).size()
 #define int long long
-#define mxn 200'007
+#define mxn 1'000'007
 
-int n, a[mxn], dp[2][mxn], tr[2][mxn], ans[mxn];
+struct node{
+	int x, y;
+};
+
+int n, d, vis[2005];
+node a[2005];
+vector<int> g[2005];
+
+int dist(int x, int y, int z, int t){
+	return (x - z) * (x - z) + (y - t) * (y - t);
+}
+
+void dfs(int u){
+	vis[u] = 1;
+	for(int &v : g[u]) if(!vis[v]) dfs(v);
+}
 
 inline void LonggVuz(){
-	cin >> n;
-	fo(i, 1, n) cin >> a[i];
-	dp[0][1] = a[1];
-	dp[1][1] = 0;
-	int x = 0, y = 1;
-	fo(i, 2, n){
-		dp[0][i] = dp[1][x] + a[i];
-		tr[0][i] = x;
-		dp[1][i] = dp[0][y] - a[i];
-		tr[1][i] = y;
-		if(dp[0][i] > dp[0][y]) y = i;
-		if(dp[1][i] > dp[1][x]) x = i;
+	cin >> n >> d;
+	fo(i, 1, n) cin >> a[i].x >> a[i].y;
+	fo(i, 1, n) fo(j, i + 1, n) if(dist(a[i].x, a[i].y, a[j].x, a[j].y) <= d * d){
+		g[i].push_back(j);
+		g[j].push_back(i);
 	}
-	fo(i, 1, n) dbg(i, dp[0][i], dp[1][i]);
-	int res = 0;
-	fo(i, 1, n) if(dp[1][i] > dp[1][res]) res = i;
-	dbg(res);
-	int o = 1;
-	while(res){
-		ans[res] = 1;
-		res = tr[o][res];
-		o ^= 1;
-	}
-	fo(i, 1, n) cout << ans[i] << ' ';
+	dfs(1);
+	fo(i, 1, n) cout << (vis[i] ? "Yes\n" : "No\n");
 }
 
 signed main(){

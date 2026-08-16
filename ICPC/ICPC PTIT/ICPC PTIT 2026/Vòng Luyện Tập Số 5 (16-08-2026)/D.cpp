@@ -15,41 +15,37 @@ template<class X, class Y> bool maxi(X &x, const Y &y){ return x < y ? x = y, 1 
 template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 : 0; }
 
 #define el cout << '\n'
-#define fo(i, a, b) for(int32_t i=a; i<=b; ++i)
+#define fo(i, a, b) for(int64_t i=a; i<=b; ++i)
 #define fd(i, a, b) for(int32_t i=a; i>=b; --i)
 #define ret(x) return void(cout << (x) << '\n')
 #define all(x) begin(x), end(x)
 #define len(x) (int)(x).size()
 #define int long long
-#define mxn 200'007
+#define mxn 1'000'007
+#define ldb long double
 
-int n, a[mxn], dp[2][mxn], tr[2][mxn], ans[mxn];
+const ldb eps = 1e-9;
+
+int a, b;
+
+ldb calc(int x){
+	ldb res = x * b + (ldb)a / sqrtl(x + 1);
+	return res;
+}
 
 inline void LonggVuz(){
-	cin >> n;
-	fo(i, 1, n) cin >> a[i];
-	dp[0][1] = a[1];
-	dp[1][1] = 0;
-	int x = 0, y = 1;
-	fo(i, 2, n){
-		dp[0][i] = dp[1][x] + a[i];
-		tr[0][i] = x;
-		dp[1][i] = dp[0][y] - a[i];
-		tr[1][i] = y;
-		if(dp[0][i] > dp[0][y]) y = i;
-		if(dp[1][i] > dp[1][x]) x = i;
+	cin >> a >> b;
+	cout << fixed << setprecision(6);
+	int l = 0, r = (int)8e18 / b;
+	while(r - l > 2){
+		int m1 = l + (r - l) / 3;
+		int m2 = r - (r - l) / 3;
+		if(calc(m1) >= calc(m2)) l = m1;
+		else r = m2;
 	}
-	fo(i, 1, n) dbg(i, dp[0][i], dp[1][i]);
-	int res = 0;
-	fo(i, 1, n) if(dp[1][i] > dp[1][res]) res = i;
-	dbg(res);
-	int o = 1;
-	while(res){
-		ans[res] = 1;
-		res = tr[o][res];
-		o ^= 1;
-	}
-	fo(i, 1, n) cout << ans[i] << ' ';
+	int res = l;
+	fo(i, l + 1, r) if(calc(res) >= calc(i)) res = i;
+	cout << calc(res);
 }
 
 signed main(){

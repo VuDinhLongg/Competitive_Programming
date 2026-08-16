@@ -21,41 +21,41 @@ template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 
 #define all(x) begin(x), end(x)
 #define len(x) (int)(x).size()
 #define int long long
-#define mxn 200'007
+#define mxn 1'000'007
 
-int n, a[mxn], dp[2][mxn], tr[2][mxn], ans[mxn];
+int p[mxn];
+vector<int> v;
+
+void prepare(){
+	fo(i, 2, 1e6) p[i] = 1;
+	fo(i, 2, 1e3) if(p[i]){
+		for(int j=i*i; j<=1e6; j+=i) p[j] = 0;
+	}
+	fo(i, 2, 1e6) if(p[i]) v.push_back(i);
+}
 
 inline void LonggVuz(){
-	cin >> n;
-	fo(i, 1, n) cin >> a[i];
-	dp[0][1] = a[1];
-	dp[1][1] = 0;
-	int x = 0, y = 1;
-	fo(i, 2, n){
-		dp[0][i] = dp[1][x] + a[i];
-		tr[0][i] = x;
-		dp[1][i] = dp[0][y] - a[i];
-		tr[1][i] = y;
-		if(dp[0][i] > dp[0][y]) y = i;
-		if(dp[1][i] > dp[1][x]) x = i;
-	}
-	fo(i, 1, n) dbg(i, dp[0][i], dp[1][i]);
+	int n; cin >> n;
 	int res = 0;
-	fo(i, 1, n) if(dp[1][i] > dp[1][res]) res = i;
-	dbg(res);
-	int o = 1;
-	while(res){
-		ans[res] = 1;
-		res = tr[o][res];
-		o ^= 1;
+	fo(i, 2, 36) if(p[i] and 1ll * i * i * i * i * i * i * i * i <= n){
+		++res;
 	}
-	fo(i, 1, n) cout << ans[i] << ' ';
+	fo(i, 0, len(v) - 1){
+		int l = -1, r = i;
+		while(r - l > 1){
+			int mid = l + r >> 1;
+			if(v[i] * v[mid] <= n / (v[i] * v[mid])) l = mid;
+			else r = mid;
+		}
+		res += l + 1;
+	}
+	cout << res, el;
 }
 
 signed main(){
 	ios::sync_with_stdio(false); cin.tie(nullptr);
-	
-	signed o_o = 1; if(false) cin >> o_o;
+	prepare();
+	signed o_o = 1; if(1) cin >> o_o;
 	fo(c_c, 1, o_o) orz(c_c), LonggVuz();
 	
 	cerr << "[exec time = '" << clock() << "ms']";

@@ -22,34 +22,34 @@ template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 
 #define len(x) (int)(x).size()
 #define int long long
 #define mxn 200'007
+#define ai3 array<int, 3>
+#define ai4 array<int, 4>
+#define pii pair<int, int>
+#define fi first
+#define se second
 
-int n, a[mxn], dp[2][mxn], tr[2][mxn], ans[mxn];
+int n, m, d[mxn], id[mxn];
+vector<ai3> g[mxn];
 
 inline void LonggVuz(){
-	cin >> n;
-	fo(i, 1, n) cin >> a[i];
-	dp[0][1] = a[1];
-	dp[1][1] = 0;
-	int x = 0, y = 1;
-	fo(i, 2, n){
-		dp[0][i] = dp[1][x] + a[i];
-		tr[0][i] = x;
-		dp[1][i] = dp[0][y] - a[i];
-		tr[1][i] = y;
-		if(dp[0][i] > dp[0][y]) y = i;
-		if(dp[1][i] > dp[1][x]) x = i;
+	cin >> n >> m;
+	fo(i, 1, m){
+		int u, v, w; cin >> u >> v >> w;
+		g[u].push_back({v, w, i});
+		g[v].push_back({u, w, i});
 	}
-	fo(i, 1, n) dbg(i, dp[0][i], dp[1][i]);
-	int res = 0;
-	fo(i, 1, n) if(dp[1][i] > dp[1][res]) res = i;
-	dbg(res);
-	int o = 1;
-	while(res){
-		ans[res] = 1;
-		res = tr[o][res];
-		o ^= 1;
+	fo(u, 2, n) d[u] = 1e18;
+	priority_queue<pii, vector<pii>, greater<pii>> q;
+	q.push({d[1], 1});
+	while(len(q)){
+		auto [cur, u] = q.top(); q.pop();
+		if(cur > d[u]) continue;
+		for(auto &[v, w, i] : g[u]) if(mini(d[v], d[u] + w)){
+			id[v] = i;
+			q.push({d[v], v});
+		}
 	}
-	fo(i, 1, n) cout << ans[i] << ' ';
+	fo(u, 2, n) cout << id[u] << ' ';
 }
 
 signed main(){
