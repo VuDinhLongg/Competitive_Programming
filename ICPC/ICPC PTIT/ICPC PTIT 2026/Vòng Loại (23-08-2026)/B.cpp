@@ -11,21 +11,27 @@ template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 
 #define all(x) begin(x), end(x)
 #define len(x) (int)x.size()
 #define int long long
-#define mxn 200'007
+#define mxn 1'000'007
+#define mask(n) (1ll << (n))
+#define bit(n, i) ((n) >> (i) & 1)
+#define one(n) __builtin_popcountll(n)
+#define clz(n) __builtin_clzll(n)
+#define ctz(n) __builtin_ctzll(n)
 
-int n, a[mxn];
+int dp[mxn];
 
 void solve(){
-	cin >> n;
-	fo(i, 1, n) cin >> a[i];
-	int c2 = 0, c4 = 0;
+	string s; cin >> s;
+	int n = len(s);
+	s = " " + s;
+	int res = 0, mask = 0;
+	++dp[mask];
 	fo(i, 1, n){
-		c2 += a[i] % 2 == 0 and a[i] % 4 != 0;
-		c4 += a[i] % 4 == 0;
+		mask ^= mask(s[i] - '0');
+		res += dp[mask];
+		++dp[mask];
 	}
-	if(c4 + c4 + 1 >= n) ret("Yes");
-	if(c4 + c4 + c2 >= n) ret("Yes");
-	ret("No");
+	cout << res;
 }
 
 signed main(){
