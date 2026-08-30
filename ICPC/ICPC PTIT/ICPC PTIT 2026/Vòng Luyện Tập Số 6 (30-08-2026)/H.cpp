@@ -19,41 +19,35 @@ template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 
 #define all(x) begin(x), end(x)
 #define int long long
 #define mxn 1'000'007
-#define mask(n) (1ll << (n))
-#define bit(n, i) ((n) >> (i) & 1)
-#define one(n) __builtin_popcountll(n)
-#define clz(n) __builtin_clzll(n)
-#define ctz(n) __builtin_ctzll(n)
 
-int n, mod, dp[2][5005];
+int n, m, vis[2005][2005];
+vector<int> g[2005];
 
-int Pow(int a, int n){
-	int r = 1; a %= mod;
-	for(; n; n /= 2, a = a * a % mod) if(n & 1) r = r * a % mod;
-	return r;
-}
-
-int calc(){
-	int cur = 0;
-	dp[cur][0] = 1;
-	fo(i, 1, n){
-		int nxt = cur ^ 1;
-		fo(j, 0, 4095) dp[nxt][j] = dp[cur][j];
-		fo(j, 0, 4095) if(dp[cur][j]){
-			dp[nxt][j ^ i] += dp[cur][j] * 2;
-			dp[nxt][j ^ i] %= mod;
+int calc(int s){
+	queue<int> q;
+	q.push(s);
+	vis[s][s] = 1;
+	while(q.size()){
+		int u = q.front(); q.pop();
+		for(int &v : g[u]) if(!vis[s][v]){
+			vis[s][v] = 1;
+			q.push(v);
 		}
-		cur = nxt;
 	}
-	return dp[cur][0];
+	int res = 0;
+	fo(u, 1, n) res += vis[s][u];
+	return res;
 }
 
 inline void LonggVuz(){
-	cin >> n >> mod; mod *= 2;
-	int tot = Pow(3, n);
-	int res = calc();
-	res = (res + tot) % mod;
-	cout << res / 2;
+	cin >> n >> m;
+	fo(i, 1, m){
+		int u, v; cin >> u >> v;
+		g[u].push_back(v);
+	}
+	int res = 0;
+	fo(u, 1, n) res += calc(u);
+	cout << res;
 }
 
 signed main(){

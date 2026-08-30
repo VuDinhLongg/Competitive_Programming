@@ -19,41 +19,16 @@ template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 
 #define all(x) begin(x), end(x)
 #define int long long
 #define mxn 1'000'007
-#define mask(n) (1ll << (n))
-#define bit(n, i) ((n) >> (i) & 1)
-#define one(n) __builtin_popcountll(n)
-#define clz(n) __builtin_clzll(n)
-#define ctz(n) __builtin_ctzll(n)
 
-int n, mod, dp[2][5005];
-
-int Pow(int a, int n){
-	int r = 1; a %= mod;
-	for(; n; n /= 2, a = a * a % mod) if(n & 1) r = r * a % mod;
-	return r;
-}
-
-int calc(){
-	int cur = 0;
-	dp[cur][0] = 1;
-	fo(i, 1, n){
-		int nxt = cur ^ 1;
-		fo(j, 0, 4095) dp[nxt][j] = dp[cur][j];
-		fo(j, 0, 4095) if(dp[cur][j]){
-			dp[nxt][j ^ i] += dp[cur][j] * 2;
-			dp[nxt][j ^ i] %= mod;
-		}
-		cur = nxt;
-	}
-	return dp[cur][0];
-}
+int n, d, t[105];
 
 inline void LonggVuz(){
-	cin >> n >> mod; mod *= 2;
-	int tot = Pow(3, n);
-	int res = calc();
-	res = (res + tot) % mod;
-	cout << res / 2;
+	cin >> n >> d;
+	fo(i, 1, n){
+		cin >> t[i];
+		if(i > 1 and t[i] - t[i - 1] <= d) ret(t[i]);
+	}
+	ret(-1);
 }
 
 signed main(){

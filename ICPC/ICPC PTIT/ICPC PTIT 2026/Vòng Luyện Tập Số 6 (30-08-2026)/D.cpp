@@ -18,42 +18,32 @@ template<class X, class Y> bool mini(X &x, const Y &y){ return x > y ? x = y, 1 
 #define ret(x) return void(cout << (x) << '\n')
 #define all(x) begin(x), end(x)
 #define int long long
-#define mxn 1'000'007
-#define mask(n) (1ll << (n))
-#define bit(n, i) ((n) >> (i) & 1)
-#define one(n) __builtin_popcountll(n)
-#define clz(n) __builtin_clzll(n)
-#define ctz(n) __builtin_ctzll(n)
+#define mxn 300'007
 
-int n, mod, dp[2][5005];
-
-int Pow(int a, int n){
-	int r = 1; a %= mod;
-	for(; n; n /= 2, a = a * a % mod) if(n & 1) r = r * a % mod;
-	return r;
-}
-
-int calc(){
-	int cur = 0;
-	dp[cur][0] = 1;
-	fo(i, 1, n){
-		int nxt = cur ^ 1;
-		fo(j, 0, 4095) dp[nxt][j] = dp[cur][j];
-		fo(j, 0, 4095) if(dp[cur][j]){
-			dp[nxt][j ^ i] += dp[cur][j] * 2;
-			dp[nxt][j ^ i] %= mod;
-		}
-		cur = nxt;
-	}
-	return dp[cur][0];
-}
+int n, c, a[mxn];
 
 inline void LonggVuz(){
-	cin >> n >> mod; mod *= 2;
-	int tot = Pow(3, n);
-	int res = calc();
-	res = (res + tot) % mod;
-	cout << res / 2;
+	cin >> n >> c;
+	fo(i, 1, n) cin >> a[i];
+	int res = 0;
+	fo(i, 1, n) res += a[i];
+	int add = 0;
+	if(c > 0){
+		int s = 0, m = 0;
+		fo(i, 1, n){
+			s += a[i];
+			maxi(add, (s - m) * (c - 1));
+			mini(m, s);
+		}
+	}else{
+		int s = 0, m = 0;
+		fo(i, 1, n){
+			s += a[i];
+			maxi(add, (s - m) * (c - 1));
+			maxi(m, s);
+		}
+	}
+	cout << res + add;
 }
 
 signed main(){
