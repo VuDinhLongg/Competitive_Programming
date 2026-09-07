@@ -50,43 +50,50 @@ inline void LonggVuz(){
 	int n = len(s);
 	s = " " + s;
 	vector<int> idx_i, idx_j;
-	fo(i, n / 3 + 1, n - 2) if(i > 1 and s[i] != '0'){
-		idx_i.push_back(i - 1);
-		if(len(idx_i) == 5) break;
+	fo(delta, 0, n){
+		int l = n / 3 - delta;
+		int r = n / 3 + delta;
+		if(l > 1 and s[l] != '0') idx_i.push_back(l - 1);
+		if(r < n and r != l and s[r] != '0') idx_i.push_back(r - 1);
+		if(len(idx_i) > 9) break;
 	}
-	fd(i, n / 3 + 1, 2) if(s[i] != '0'){
-		idx_i.push_back(i - 1);
-		if(len(idx_i) == 9) break;
-	}
-	fo(i, n / 3 * 2 + 1, n) if(i > 1 and (s[i] != '0' or i == n)){
-		idx_j.push_back(i - 1);
-		if(len(idx_j) == 5) break;
-	}
-	fd(i, n / 3 * 2 + 1, 3) if(s[i] != '0' or i == n){
-		idx_j.push_back(i - 1);
-		if(len(idx_j) == 9) break;
+	fo(delta, 0, n){
+		int l = n * 2 / 3 - delta;
+		int r = n * 2 / 3 + delta;
+		if(l > 2 and s[l] != '0') idx_j.push_back(l - 1);
+		if(r <= n and r != l and s[r] != '0') idx_j.push_back(r - 1);
+		if(len(idx_j) > 9) break;
 	}
 	sort(all(idx_i));
 	sort(all(idx_j));
 	dbg(idx_i, idx_j);
 	auto check = [&](int l, int r){
-		int len = r - l + 1;
-		if(len == 1) return true;
-		if(s[l] == '0') return false;
-		return true;
+		if(l > r) return false;
+		if(l == r) return true;
+		return s[l] != '0';
 	};
-	for(int &i : idx_i) for(int &j : idx_j) if(check(1, i) and check(i + 1, j) and check(j + 1, n)){
-		string num1 = s.substr(1, i);
-		string num2 = s.substr(i + 1, j - i);
-		string num3 = s.substr(j + 1, n - j);
-		string t = tong(tong(num1, num2), num3);
-		res = smin(res, t);
+	auto update = [&](int i, int j){
+		if(i < j and check(1, i) and check(i + 1, j) and check(j + 1, n)){
+			string num1 = s.substr(1, i);
+			string num2 = s.substr(i + 1, j - i);
+			string num3 = s.substr(j + 1, n - j);
+			string t = tong(tong(num1, num2), num3);
+			res = smin(res, t);
+		}
+	};
+	for(int &i : idx_i) for(int &j : idx_j){
+		update(i, j);
 	}
-	fo(i, 2, n - 1) if(s[i] == '0' and check(1, i - 1) and check(i + 1, n)){
-		if(max<int>({i - 1, 1, n - i}) > len(res)) continue;
-		string t = tong(s.substr(1, i - 1), s.substr(i + 1, n - i));
-		res = smin(res, t);
+	fo(delta, -5, 5){
+		int i = n / 2 + delta;
+		if(1 <= i and i <= n - 2){
+			update(1, i);
+			update(i, n - 1);
+			update(i, i + 1);
+		}
 	}
+	update(1, 2);
+	update(n - 2, n - 1);
 	cout << res;
 }
 
